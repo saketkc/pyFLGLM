@@ -156,15 +156,14 @@
 <h1>Chapter 1 - Introduction to Linear and Generalized Linear Models<a class="headerlink" href="#chapter-1-introduction-to-linear-and-generalized-linear-models" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">load_ext</span> <span class="n">blackcellmagic</span>
-<span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
 
-<span class="kn">from</span> <span class="nn">patsy</span> <span class="kn">import</span> <span class="n">dmatrices</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">proplot</span> <span class="k">as</span> <span class="nn">plot</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 <span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="kn">from</span> <span class="nn">patsy</span> <span class="kn">import</span> <span class="n">dmatrices</span>
 </pre></div>
 </div>
 </div>
@@ -276,7 +275,7 @@ burrows into the sand and lays cluster of eggs. The fertilization of eggs happen
 <p><strong>spine</strong>:condition of female’s spine</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">((</span><span class="n">crabs_df</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">crabs_df</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">var</span><span class="p">()))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">((</span><span class="n">crabs_df</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">crabs_df</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">var</span><span class="p">()))</span>
 </pre></div>
 </div>
 </div>
@@ -293,7 +292,7 @@ burrows into the sand and lays cluster of eggs. The fertilization of eggs happen
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x2ae0e1d242e8&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x2b78fc817470&gt;
 </pre></div>
 </div>
 <img alt="../_images/01_Chapter01_6_1.png" src="../_images/01_Chapter01_6_1.png" />
@@ -416,7 +415,7 @@ Model Family:                 Poisson   Df Model:                            0
 Link Function:               identity   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -494.04
 Date:                Sat, 20 Jun 2020   Deviance:                       632.79
-Time:                        00:06:21   Pearson chi2:                     584.
+Time:                        12:11:49   Pearson chi2:                     584.
 No. Iterations:                     3                                         
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -439,7 +438,7 @@ Intercept      2.9191      0.130     22.472      0.000       2.664       3.174
 <h1>Linear Model Using Weight to Predict Satellite Counts<a class="headerlink" href="#linear-model-using-weight-to-predict-satellite-counts" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">((</span><span class="n">crabs_df</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">crabs_df</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">var</span><span class="p">()))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">((</span><span class="n">crabs_df</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">crabs_df</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">var</span><span class="p">()))</span>
 </pre></div>
 </div>
 </div>
@@ -451,7 +450,7 @@ Intercept      2.9191      0.130     22.472      0.000       2.664       3.174
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">crabs_df</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">crabs_df</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
@@ -468,10 +467,10 @@ Name: weight, dtype: float64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">crabs_df</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">],</span> <span class="n">crabs_df</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;weight&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">crabs_df</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">],</span> <span class="n">crabs_df</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;weight&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -500,7 +499,7 @@ Dep. Variable:                      y   R-squared:                       0.136
 Model:                            OLS   Adj. R-squared:                  0.131
 Method:                 Least Squares   F-statistic:                     27.00
 Date:                Sat, 20 Jun 2020   Prob (F-statistic):           5.75e-07
-Time:                        00:06:21   Log-Likelihood:                -430.70
+Time:                        12:11:50   Log-Likelihood:                -430.70
 No. Observations:                 173   AIC:                             865.4
 Df Residuals:                     171   BIC:                             871.7
 Df Model:                           1                                         
@@ -540,7 +539,7 @@ Model Family:                Gaussian   Df Model:                            1
 Link Function:               identity   Scale:                          8.6106
 Method:                          IRLS   Log-Likelihood:                -430.70
 Date:                Sat, 20 Jun 2020   Deviance:                       1472.4
-Time:                        00:06:22   Pearson chi2:                 1.47e+03
+Time:                        12:11:50   Pearson chi2:                 1.47e+03
 No. Iterations:                     3                                         
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -559,15 +558,15 @@ weight         2.0147      0.388      5.196      0.000       1.255       2.775
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">crabs_df</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">],</span> <span class="n">crabs_df</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
-<span class="n">line</span> <span class="o">=</span> <span class="n">fit_weight2</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">fit_weight2</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">crabs_df</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">crabs_df</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">],</span> <span class="n">crabs_df</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">])</span>
+<span class="n">line</span> <span class="o">=</span> <span class="n">fit_weight2</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">fit_weight2</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">crabs_df</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">crabs_df</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">],</span> <span class="n">line</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#f03b20&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">crabs_df</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">],</span> <span class="n">line</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#f03b20&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x2ae0f60fdc18&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x2b7908c215f8&gt;]
 </pre></div>
 </div>
 <img alt="../_images/01_Chapter01_20_1.png" src="../_images/01_Chapter01_20_1.png" />
@@ -579,7 +578,7 @@ weight         2.0147      0.388      5.196      0.000       1.255       2.775
 <h2>Comparing Mean Numbers of Satellites by Crab Color<a class="headerlink" href="#comparing-mean-numbers-of-satellites-by-crab-color" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crabs_df</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crabs_df</span><span class="p">[</span><span class="s2">&quot;color&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -595,7 +594,7 @@ Name: color, dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crabs_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;var&#39;</span><span class="p">])[[</span><span class="s1">&#39;y&#39;</span><span class="p">]]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crabs_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;color&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;var&quot;</span><span class="p">])[[</span><span class="s2">&quot;y&quot;</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -677,7 +676,7 @@ Dep. Variable:                      y   R-squared:                       0.036
 Model:                            OLS   Adj. R-squared:                  0.031
 Method:                 Least Squares   F-statistic:                     6.459
 Date:                Sat, 20 Jun 2020   Prob (F-statistic):             0.0119
-Time:                        00:06:22   Log-Likelihood:                -440.18
+Time:                        12:11:50   Log-Likelihood:                -440.18
 No. Observations:                 173   AIC:                             884.4
 Df Residuals:                     171   BIC:                             890.7
 Df Model:                           1                                         
@@ -716,7 +715,7 @@ Dep. Variable:                      y   R-squared:                       0.040
 Model:                            OLS   Adj. R-squared:                  0.023
 Method:                 Least Squares   F-statistic:                     2.323
 Date:                Sat, 20 Jun 2020   Prob (F-statistic):             0.0769
-Time:                        00:06:22   Log-Likelihood:                -439.89
+Time:                        12:11:50   Log-Likelihood:                -439.89
 No. Observations:                 173   AIC:                             887.8
 Df Residuals:                     169   BIC:                             900.4
 Df Model:                           3                                         
@@ -760,7 +759,7 @@ Model Family:                Gaussian   Df Model:                            3
 Link Function:               identity   Scale:                          9.6884
 Method:                          IRLS   Log-Likelihood:                -439.89
 Date:                Sat, 20 Jun 2020   Deviance:                       1637.3
-Time:                        00:06:22   Pearson chi2:                 1.64e+03
+Time:                        12:11:50   Pearson chi2:                 1.64e+03
 No. Iterations:                     3                                         
 Covariance Type:            nonrobust                                         
 =================================================================================
@@ -796,7 +795,7 @@ Model Family:                 Poisson   Df Model:                            3
 Link Function:               identity   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -482.22
 Date:                Sat, 20 Jun 2020   Deviance:                       609.14
-Time:                        00:06:22   Pearson chi2:                     584.
+Time:                        12:11:50   Pearson chi2:                     584.
 No. Iterations:                     3                                         
 Covariance Type:            nonrobust                                         
 =================================================================================
@@ -842,7 +841,7 @@ Model Family:                Gaussian   Df Model:                            4
 Link Function:               identity   Scale:                          8.6370
 Method:                          IRLS   Log-Likelihood:                -429.44
 Date:                Sat, 20 Jun 2020   Deviance:                       1451.0
-Time:                        00:06:22   Pearson chi2:                 1.45e+03
+Time:                        12:11:50   Pearson chi2:                 1.45e+03
 No. Iterations:                     3                                         
 Covariance Type:            nonrobust                                         
 =================================================================================
@@ -878,7 +877,7 @@ Model Family:                 Poisson   Df Model:                            4
 Link Function:               identity   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                    nan
 Date:                Sat, 20 Jun 2020   Deviance:                       534.33
-Time:                        00:06:22   Pearson chi2:                     529.
+Time:                        12:11:50   Pearson chi2:                     529.
 No. Iterations:                   100                                         
 Covariance Type:            nonrobust                                         
 =================================================================================
