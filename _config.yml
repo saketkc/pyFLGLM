@@ -1,0 +1,7 @@
+# Book settings
+title: Statistical Rethinking in Pyro
+author: Saket Choudhary 
+
+latex:
+  latex_documents:
+    targetname: book.tex

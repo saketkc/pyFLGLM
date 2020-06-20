@@ -1,0 +1,11 @@
+jupyter-book
+matplotlib
+numpy
+scipy 
+statsmodels
+proplot
+ipykernel
+jupyterlab
+seaborn
+pandas
+blackcellmagic
