@@ -74,6 +74,12 @@
   <li class="">
     <a href="02_Chapter02.html">Chapter 2 - Linear Models: Least Squares Theory</a>
   </li>
+  <li class="">
+    <a href="03_Chapter03.html">TODO: Derivation of the CI for mean and future y</a>
+  </li>
+  <li class="">
+    <a href="04_Chapter04.html">Gamma GLMs for House Selling Price Data</a>
+  </li>
 </ul>
 </nav>
 
@@ -107,26 +113,25 @@
         </button>
         
         <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-                    class="fas fa-download"></i></button>
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
 
-            
-            <div class="dropdown-buttons">
-                <!-- ipynb file if we had a myst markdown file -->
-                
-                <!-- Download raw file -->
-                <a class="dropdown-buttons" href="../_sources/Chapters/01_Chapter01.ipynb"><button type="button"
-                        class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                        data-placement="left">.ipynb</button></a>
-                <!-- Download PDF via print -->
-                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                    onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-            </div>
-            
-        </div>
-
-        <!-- Source interaction buttons -->
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Chapters/01_Chapter01.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
         <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -134,7 +139,7 @@
                     class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
-        
+
     </div>
     <div class="d-none d-md-block col-md-2 bd-toc show">
 
@@ -156,7 +161,7 @@
 <h1>Chapter 1 - Introduction to Linear and Generalized Linear Models<a class="headerlink" href="#chapter-1-introduction-to-linear-and-generalized-linear-models" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">proplot</span> <span class="k">as</span> <span class="nn">plot</span>
@@ -164,18 +169,20 @@
 <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 <span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
 <span class="kn">from</span> <span class="nn">patsy</span> <span class="kn">import</span> <span class="n">dmatrices</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;axes.labelweight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;bold&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;bold&quot;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
 </pre></div>
-</div>
-<div class="stderr docutils container">
-<pre class="stderr literal-block">/home/cmb-06/as/skchoudh/software_frozen/anaconda37/lib/python3.7/_collections_abc.py:841: MatplotlibDeprecationWarning: 
-The examples.directory rcparam was deprecated in Matplotlib 3.0 and will be removed in 3.2. In the future, examples will be found relative to the 'datapath' directory.
-  self[key] = other[key]
-</pre>
 </div>
 </div>
 </div>
@@ -184,7 +191,7 @@ The examples.directory rcparam was deprecated in Matplotlib 3.0 and will be remo
 <h1>Code 1.1<a class="headerlink" href="#code-1-1" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crabs_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/Crabs.tsv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crabs_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/Crabs.tsv.gz&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">crabs_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -292,7 +299,7 @@ burrows into the sand and lays cluster of eggs. The fertilization of eggs happen
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x2b78fc817470&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x2ad246bfca58&gt;
 </pre></div>
 </div>
 <img alt="../_images/01_Chapter01_6_1.png" src="../_images/01_Chapter01_6_1.png" />
@@ -414,8 +421,8 @@ Model:                            GLM   Df Residuals:                      172
 Model Family:                 Poisson   Df Model:                            0
 Link Function:               identity   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -494.04
-Date:                Sat, 20 Jun 2020   Deviance:                       632.79
-Time:                        12:11:49   Pearson chi2:                     584.
+Date:                Mon, 22 Jun 2020   Deviance:                       632.79
+Time:                        23:43:22   Pearson chi2:                     584.
 No. Iterations:                     3                                         
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -424,11 +431,6 @@ Covariance Type:            nonrobust
 Intercept      2.9191      0.130     22.472      0.000       2.664       3.174
 ==============================================================================
 </pre></div>
-</div>
-<div class="stderr docutils container">
-<pre class="stderr literal-block">/home/cmb-06/as/skchoudh/software_frozen/anaconda37/lib/python3.7/site-packages/statsmodels/genmod/generalized_linear_model.py:278: DomainWarning: The identity link function does not respect the domain of the Poisson family.
-  DomainWarning)
-</pre>
 </div>
 </div>
 </div>
@@ -498,8 +500,8 @@ Name: weight, dtype: float64
 Dep. Variable:                      y   R-squared:                       0.136
 Model:                            OLS   Adj. R-squared:                  0.131
 Method:                 Least Squares   F-statistic:                     27.00
-Date:                Sat, 20 Jun 2020   Prob (F-statistic):           5.75e-07
-Time:                        12:11:50   Log-Likelihood:                -430.70
+Date:                Mon, 22 Jun 2020   Prob (F-statistic):           5.75e-07
+Time:                        23:43:22   Log-Likelihood:                -430.70
 No. Observations:                 173   AIC:                             865.4
 Df Residuals:                     171   BIC:                             871.7
 Df Model:                           1                                         
@@ -538,8 +540,8 @@ Model:                            GLM   Df Residuals:                      171
 Model Family:                Gaussian   Df Model:                            1
 Link Function:               identity   Scale:                          8.6106
 Method:                          IRLS   Log-Likelihood:                -430.70
-Date:                Sat, 20 Jun 2020   Deviance:                       1472.4
-Time:                        12:11:50   Pearson chi2:                 1.47e+03
+Date:                Mon, 22 Jun 2020   Deviance:                       1472.4
+Time:                        23:43:22   Pearson chi2:                 1.47e+03
 No. Iterations:                     3                                         
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -566,7 +568,7 @@ weight         2.0147      0.388      5.196      0.000       1.255       2.775
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x2b7908c215f8&gt;]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x2ad2f7712668&gt;]
 </pre></div>
 </div>
 <img alt="../_images/01_Chapter01_20_1.png" src="../_images/01_Chapter01_20_1.png" />
@@ -675,8 +677,8 @@ Name: color, dtype: int64
 Dep. Variable:                      y   R-squared:                       0.036
 Model:                            OLS   Adj. R-squared:                  0.031
 Method:                 Least Squares   F-statistic:                     6.459
-Date:                Sat, 20 Jun 2020   Prob (F-statistic):             0.0119
-Time:                        12:11:50   Log-Likelihood:                -440.18
+Date:                Mon, 22 Jun 2020   Prob (F-statistic):             0.0119
+Time:                        23:43:23   Log-Likelihood:                -440.18
 No. Observations:                 173   AIC:                             884.4
 Df Residuals:                     171   BIC:                             890.7
 Df Model:                           1                                         
@@ -714,8 +716,8 @@ Warnings:
 Dep. Variable:                      y   R-squared:                       0.040
 Model:                            OLS   Adj. R-squared:                  0.023
 Method:                 Least Squares   F-statistic:                     2.323
-Date:                Sat, 20 Jun 2020   Prob (F-statistic):             0.0769
-Time:                        12:11:50   Log-Likelihood:                -439.89
+Date:                Mon, 22 Jun 2020   Prob (F-statistic):             0.0769
+Time:                        23:43:23   Log-Likelihood:                -439.89
 No. Observations:                 173   AIC:                             887.8
 Df Residuals:                     169   BIC:                             900.4
 Df Model:                           3                                         
@@ -758,8 +760,8 @@ Model:                            GLM   Df Residuals:                      169
 Model Family:                Gaussian   Df Model:                            3
 Link Function:               identity   Scale:                          9.6884
 Method:                          IRLS   Log-Likelihood:                -439.89
-Date:                Sat, 20 Jun 2020   Deviance:                       1637.3
-Time:                        12:11:50   Pearson chi2:                 1.64e+03
+Date:                Mon, 22 Jun 2020   Deviance:                       1637.3
+Time:                        23:43:23   Pearson chi2:                 1.64e+03
 No. Iterations:                     3                                         
 Covariance Type:            nonrobust                                         
 =================================================================================
@@ -794,8 +796,8 @@ Model:                            GLM   Df Residuals:                      169
 Model Family:                 Poisson   Df Model:                            3
 Link Function:               identity   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -482.22
-Date:                Sat, 20 Jun 2020   Deviance:                       609.14
-Time:                        12:11:50   Pearson chi2:                     584.
+Date:                Mon, 22 Jun 2020   Deviance:                       609.14
+Time:                        23:43:23   Pearson chi2:                     584.
 No. Iterations:                     3                                         
 Covariance Type:            nonrobust                                         
 =================================================================================
@@ -807,14 +809,6 @@ C(color)[T.3]    -1.8561      0.625     -2.969      0.003      -3.081      -0.63
 C(color)[T.4]    -2.0379      0.658     -3.096      0.002      -3.328      -0.748
 =================================================================================
 </pre></div>
-</div>
-<div class="stderr docutils container">
-<pre class="stderr literal-block">/home/cmb-06/as/skchoudh/software_frozen/anaconda37/lib/python3.7/site-packages/ipykernel_launcher.py:4: DeprecationWarning: Calling Family(..) with a link class as argument is deprecated.
-Use an instance of a link class instead.
-  after removing the cwd from sys.path.
-/home/cmb-06/as/skchoudh/software_frozen/anaconda37/lib/python3.7/site-packages/statsmodels/genmod/generalized_linear_model.py:278: DomainWarning: The identity link function does not respect the domain of the Poisson family.
-  DomainWarning)
-</pre>
 </div>
 </div>
 </div>
@@ -840,8 +834,8 @@ Model:                            GLM   Df Residuals:                      168
 Model Family:                Gaussian   Df Model:                            4
 Link Function:               identity   Scale:                          8.6370
 Method:                          IRLS   Log-Likelihood:                -429.44
-Date:                Sat, 20 Jun 2020   Deviance:                       1451.0
-Time:                        12:11:50   Pearson chi2:                 1.45e+03
+Date:                Mon, 22 Jun 2020   Deviance:                       1451.0
+Time:                        23:43:23   Pearson chi2:                 1.45e+03
 No. Iterations:                     3                                         
 Covariance Type:            nonrobust                                         
 =================================================================================
@@ -876,8 +870,8 @@ Model:                            GLM   Df Residuals:                      168
 Model Family:                 Poisson   Df Model:                            4
 Link Function:               identity   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                    nan
-Date:                Sat, 20 Jun 2020   Deviance:                       534.33
-Time:                        12:11:50   Pearson chi2:                     529.
+Date:                Mon, 22 Jun 2020   Deviance:                       534.33
+Time:                        23:43:23   Pearson chi2:                     529.
 No. Iterations:                   100                                         
 Covariance Type:            nonrobust                                         
 =================================================================================
@@ -890,13 +884,6 @@ C(color)[T.4]    -1.2248      0.658     -1.861      0.063      -2.515       0.06
 weight            2.0086      0.173     11.641      0.000       1.670       2.347
 =================================================================================
 </pre></div>
-</div>
-<div class="stderr docutils container">
-<pre class="stderr literal-block">/home/cmb-06/as/skchoudh/software_frozen/anaconda37/lib/python3.7/site-packages/statsmodels/genmod/generalized_linear_model.py:278: DomainWarning: The identity link function does not respect the domain of the Poisson family.
-  DomainWarning)
-/home/cmb-06/as/skchoudh/software_frozen/anaconda37/lib/python3.7/site-packages/statsmodels/genmod/families/family.py:460: RuntimeWarning: invalid value encountered in log
-  return var_weights / scale * (endog * np.log(mu) - mu -
-</pre>
 </div>
 </div>
 </div>

@@ -31,6 +31,7 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="TODO: Derivation of the CI for mean and future y" href="03_Chapter03.html" />
     <link rel="prev" title="Chapter 1 - Introduction to Linear and Generalized Linear Models" href="01_Chapter01.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -73,6 +74,12 @@
   <li class="active">
     <a href="">Chapter 2 - Linear Models: Least Squares Theory</a>
   </li>
+  <li class="">
+    <a href="03_Chapter03.html">TODO: Derivation of the CI for mean and future y</a>
+  </li>
+  <li class="">
+    <a href="04_Chapter04.html">Gamma GLMs for House Selling Price Data</a>
+  </li>
 </ul>
 </nav>
 
@@ -106,26 +113,25 @@
         </button>
         
         <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-                    class="fas fa-download"></i></button>
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
 
-            
-            <div class="dropdown-buttons">
-                <!-- ipynb file if we had a myst markdown file -->
-                
-                <!-- Download raw file -->
-                <a class="dropdown-buttons" href="../_sources/Chapters/02_Chapter02.ipynb"><button type="button"
-                        class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                        data-placement="left">.ipynb</button></a>
-                <!-- Download PDF via print -->
-                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                    onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-            </div>
-            
-        </div>
-
-        <!-- Source interaction buttons -->
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Chapters/02_Chapter02.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
         <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -133,7 +139,7 @@
                     class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
-        
+
     </div>
     <div class="d-none d-md-block col-md-2 bd-toc show">
 
@@ -155,7 +161,7 @@
 <h1>Chapter 2 - Linear Models: Least Squares Theory<a class="headerlink" href="#chapter-2-linear-models-least-squares-theory" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">proplot</span> <span class="k">as</span> <span class="nn">plot</span>
@@ -163,7 +169,14 @@
 <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 <span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
 <span class="kn">from</span> <span class="nn">patsy</span> <span class="kn">import</span> <span class="n">dmatrices</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">pearsonr</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;axes.labelweight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;bold&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;bold&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -171,15 +184,11 @@
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
 </pre></div>
 </div>
-<div class="stderr docutils container">
-<pre class="stderr literal-block">/opt/hostedtoolcache/Python/3.7.7/x64/lib/python3.7/site-packages/proplot/config.py:1454: ProPlotWarning: Rebuilding font cache.
-</pre>
-</div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scots_races_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/ScotsRaces.tsv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scots_races_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/ScotsRaces.tsv.gz&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">scots_races_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -281,7 +290,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x7f57dc289610&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x2b12614c7f98&gt;
 </pre></div>
 </div>
 <img alt="../_images/02_Chapter02_5_1.png" src="../_images/02_Chapter02_5_1.png" />
@@ -356,8 +365,8 @@ dtype: float64
 Dep. Variable:                   time   R-squared:                       0.972
 Model:                            OLS   Adj. R-squared:                  0.970
 Method:                 Least Squares   F-statistic:                     549.9
-Date:                Sat, 20 Jun 2020   Prob (F-statistic):           1.67e-25
-Time:                        20:32:51   Log-Likelihood:                -123.95
+Date:                Tue, 23 Jun 2020   Prob (F-statistic):           1.67e-25
+Time:                        00:52:18   Log-Likelihood:                -123.95
 No. Observations:                  35   AIC:                             253.9
 Df Residuals:                      32   BIC:                             258.6
 Df Model:                           2                                         
@@ -389,7 +398,7 @@ Warnings:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f5798285190&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x2b1266623fd0&gt;
 </pre></div>
 </div>
 <img alt="../_images/02_Chapter02_9_1.png" src="../_images/02_Chapter02_9_1.png" />
@@ -414,12 +423,12 @@ dtype: float64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">fit_cd</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">fit_cd</span><span class="o">.</span><span class="n">resid</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">fit_cd</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">fit_cd</span><span class="o">.</span><span class="n">resid</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>(3.755818658506266e-15, 0.9999999999999806)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>(-2.4424906541753444e-15, 0.99999999999999)
 </pre></div>
 </div>
 </div>
@@ -431,7 +440,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>6.483702463810914e-15 0.9561828874675148
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>4.4345479669313396e-15 0.956182887467515
 </pre></div>
 </div>
 </div>
@@ -444,7 +453,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f579ad45810&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x2b1264de7278&gt;
 </pre></div>
 </div>
 <img alt="../_images/02_Chapter02_13_1.png" src="../_images/02_Chapter02_13_1.png" />
@@ -458,7 +467,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f5799d0da50&gt;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x2b126715cac8&gt;
 </pre></div>
 </div>
 <img alt="../_images/02_Chapter02_14_1.png" src="../_images/02_Chapter02_14_1.png" />
@@ -543,8 +552,8 @@ Residual   2441.270928  32.0         NaN           NaN
 Dep. Variable:                   time   R-squared:                       0.981
 Model:                            OLS   Adj. R-squared:                  0.979
 Method:                 Least Squares   F-statistic:                     524.1
-Date:                Sat, 20 Jun 2020   Prob (F-statistic):           1.24e-26
-Time:                        20:32:52   Log-Likelihood:                -117.30
+Date:                Tue, 23 Jun 2020   Prob (F-statistic):           1.24e-26
+Time:                        00:52:45   Log-Likelihood:                -117.30
 No. Observations:                  35   AIC:                             242.6
 Df Residuals:                      31   BIC:                             248.8
 Df Model:                           3                                         
@@ -581,6 +590,7 @@ Warnings:
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="01_Chapter01.html" title="previous page">Chapter 1 - Introduction to Linear and Generalized Linear Models</a>
+    <a class='right-next' id="next-link" href="03_Chapter03.html" title="next page">TODO: Derivation of the CI for mean and future y</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
