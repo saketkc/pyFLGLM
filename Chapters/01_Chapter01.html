@@ -157,7 +157,8 @@
         
               <div>
                 
-  <div class="section" id="chapter-1-introduction-to-linear-and-generalized-linear-models">
+  <p><a href="https://colab.research.google.com/github/saketkc/pyFLGLM/blob/master/Chapters/01_Chapter01.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<div class="section" id="chapter-1-introduction-to-linear-and-generalized-linear-models">
 <h1>Chapter 1 - Introduction to Linear and Generalized Linear Models<a class="headerlink" href="#chapter-1-introduction-to-linear-and-generalized-linear-models" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -302,7 +303,7 @@ burrows into the sand and lays cluster of eggs. The fertilization of eggs happen
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x2ad246bfca58&gt;
 </pre></div>
 </div>
-<img alt="../_images/01_Chapter01_6_1.png" src="../_images/01_Chapter01_6_1.png" />
+<img alt="../_images/01_Chapter01_7_1.png" src="../_images/01_Chapter01_7_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -480,7 +481,7 @@ Name: weight, dtype: float64
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;y&#39;)
 </pre></div>
 </div>
-<img alt="../_images/01_Chapter01_13_1.png" src="../_images/01_Chapter01_13_1.png" />
+<img alt="../_images/01_Chapter01_14_1.png" src="../_images/01_Chapter01_14_1.png" />
 </div>
 </div>
 <p>The plot shows that there is no clear trend in relation between y (number of satellites) and weight.</p>
@@ -571,7 +572,7 @@ weight         2.0147      0.388      5.196      0.000       1.255       2.775
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x2ad2f7712668&gt;]
 </pre></div>
 </div>
-<img alt="../_images/01_Chapter01_20_1.png" src="../_images/01_Chapter01_20_1.png" />
+<img alt="../_images/01_Chapter01_21_1.png" src="../_images/01_Chapter01_21_1.png" />
 </div>
 </div>
 </div>
@@ -594,6 +595,11 @@ Name: color, dtype: int64
 </div>
 </div>
 </div>
+<p>color:
+1 = medium light,
+2 = medium,
+3 = medium dark,
+4 = dark</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crabs_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;color&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;var&quot;</span><span class="p">])[[</span><span class="s2">&quot;y&quot;</span><span class="p">]]</span>
