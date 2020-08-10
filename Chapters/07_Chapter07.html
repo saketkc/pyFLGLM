@@ -1,0 +1,1102 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Chapter 7 - Models for Count Data &#8212; Foundations of Linear and Generalized Linear Models with Python</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/mystnb.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Foundations of Linear and Generalized Linear Models with Python</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Foundations of Linear and Generalized Linear Models with Python
+  </a>
+ </li>
+</ul>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Chapter01.html">
+   Chapter 1 - Introduction to Linear and Generalized Linear Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Chapter01.html#code-1-1">
+   Code 1.1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Chapter01.html#linear-model-using-weight-to-predict-satellite-counts">
+   Linear Model Using Weight to Predict Satellite Counts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Chapter01.html#using-both-qualitative-and-quantitative-variables">
+   Using both qualitative and quantitative variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Chapter02.html">
+   Chapter 2 - Linear Models: Least Squares Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Chapter02.html#anova">
+   ANOVA
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html">
+   Chapter 3 - Normal Linear Models: Statistical Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#todo-derivation-of-the-ci-for-mean-and-future-y">
+   TODO: Derivation of the CI for mean and future y
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#simpson-s-paradox">
+   Simpson’s paradox
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#partial-correlation">
+   Partial Correlation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Chapter03.html#todo-testing-contrats-as-a-general-linear-hypothesis">
+   TODO: Testing contrats as a general linear hypothesis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html">
+   Chapter 4 - Generalized Linear Models: Model Fitting and Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#gamma-glms-for-house-selling-price-data">
+   Gamma GLMs for House Selling Price Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Chapter04.html#todo-fix-the-anova-glm-output">
+   TODO: Fix the anova_glm output
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Chapters/07_Chapter07.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> On this page
+        </div>
+        <nav id="bd-toc-nav">
+            
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p><a href="https://colab.research.google.com/github/saketkc/pyFLGLM/blob/master/Chapters/07_Chapter07.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<div class="section" id="chapter-7-models-for-count-data">
+<h1>Chapter 7 - Models for Count Data<a class="headerlink" href="#chapter-7-models-for-count-data" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!pip install proplot
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: proplot in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (0.6.4)
+Requirement already satisfied: matplotlib in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from proplot) (3.3.0)
+Requirement already satisfied: cycler&gt;=0.10 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (0.10.0)
+Requirement already satisfied: python-dateutil&gt;=2.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2.8.1)
+Requirement already satisfied: pillow&gt;=6.2.0 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (7.2.0)
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.3 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2.4.7)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (1.2.0)
+Requirement already satisfied: numpy&gt;=1.15 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (1.19.1)
+Requirement already satisfied: six in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from cycler&gt;=0.10-&gt;matplotlib-&gt;proplot) (1.15.0)
+</pre></div>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[33mWARNING: You are using pip version 20.2; however, version 20.2.1 is available.
+You should consider upgrading via the &#39;/opt/hostedtoolcache/Python/3.7.8/x64/bin/python -m pip install --upgrade pip&#39; command.[0m
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">proplot</span> <span class="k">as</span> <span class="nn">plot</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">statsmodels</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="kn">from</span> <span class="nn">patsy</span> <span class="kn">import</span> <span class="n">dmatrices</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;axes.labelweight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;bold&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;bold&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="stderr docutils container">
+<pre class="stderr literal-block">Matplotlib is building the font cache; this may take a moment.
+</pre>
+</div>
+<div class="stderr docutils container">
+<pre class="stderr literal-block">/opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages/proplot/config.py:1454: ProPlotWarning: Rebuilding font cache.
+</pre>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cancer_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://github.com/saketkc/pyFLGLM/blob/master/data/Cancer.tsv.gz?raw=true&quot;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s2">&quot;gzip&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">cancer_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>time</th>
+      <th>histology</th>
+      <th>stage</th>
+      <th>count</th>
+      <th>risktime</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>9</td>
+      <td>157</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>5</td>
+      <td>77</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>139</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2</td>
+      <td>2</td>
+      <td>1</td>
+      <td>2</td>
+      <td>68</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cancer_df</span><span class="p">[</span><span class="s2">&quot;logrisktime&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">cancer_df</span><span class="p">[</span><span class="s2">&quot;risktime&quot;</span><span class="p">])</span>
+
+<span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;count ~ C(histology) + C(stage) + C(time)&quot;&quot;&quot;</span>
+<span class="n">response</span><span class="p">,</span> <span class="n">predictors</span> <span class="o">=</span> <span class="n">dmatrices</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">cancer_df</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">)</span>
+<span class="n">fit</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span>
+    <span class="n">response</span><span class="p">,</span> <span class="n">predictors</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Poisson</span><span class="p">(</span><span class="n">link</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">log</span><span class="p">()),</span>
+    <span class="n">offset</span><span class="o">=</span><span class="n">cancer_df</span><span class="p">[</span><span class="s2">&quot;logrisktime&quot;</span><span class="p">]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:                  count   No. Observations:                   63
+Model:                            GLM   Df Residuals:                       52
+Model Family:                 Poisson   Df Model:                           10
+Link Function:                    log   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -114.87
+Date:                Mon, 10 Aug 2020   Deviance:                       43.923
+Time:                        00:05:19   Pearson chi2:                     43.1
+No. Iterations:                     5                                         
+Covariance Type:            nonrobust                                         
+=====================================================================================
+                        coef    std err          z      P&gt;|z|      [0.025      0.975]
+-------------------------------------------------------------------------------------
+Intercept            -3.0093      0.167    -18.073      0.000      -3.336      -2.683
+C(histology)[T.2]     0.1624      0.122      1.332      0.183      -0.077       0.401
+C(histology)[T.3]     0.1075      0.147      0.729      0.466      -0.181       0.397
+C(stage)[T.2]         0.4700      0.174      2.694      0.007       0.128       0.812
+C(stage)[T.3]         1.3243      0.152      8.709      0.000       1.026       1.622
+C(time)[T.2]         -0.1275      0.149     -0.855      0.393      -0.420       0.165
+C(time)[T.3]         -0.0797      0.164     -0.488      0.626      -0.400       0.241
+C(time)[T.4]          0.1189      0.171      0.695      0.487      -0.216       0.454
+C(time)[T.5]         -0.6651      0.261     -2.552      0.011      -1.176      -0.154
+C(time)[T.6]         -0.3502      0.243     -1.438      0.150      -0.827       0.127
+C(time)[T.7]         -0.1752      0.250     -0.701      0.483      -0.665       0.315
+=====================================================================================
+</pre></div>
+</div>
+</div>
+</div>
+<p>The increasing coefficients with stage reflect the higher mortality with stage. Stage 3 mortalites are <span class="math notranslate nohighlight">\(exp(1.324) = 3.76\)</span> times higher than staeg 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">drugs_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://github.com/saketkc/pyFLGLM/blob/master/data/Drugs.tsv.gz?raw=true&quot;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s2">&quot;gzip&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">drugs_df</span> <span class="o">=</span> <span class="n">drugs_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="s2">&quot;alc&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="s2">&quot;cig&quot;</span><span class="p">,</span> <span class="s2">&quot;M&quot;</span><span class="p">:</span> <span class="s2">&quot;mar&quot;</span><span class="p">})</span>
+<span class="n">drugs_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>alc</th>
+      <th>cig</th>
+      <th>mar</th>
+      <th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>911</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>yes</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>538</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>yes</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>44</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
+      <td>456</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>no</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>no</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>43</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>no</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>no</td>
+      <td>no</td>
+      <td>no</td>
+      <td>279</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;count ~ C(alc) + C(cig) + C(mar)&quot;&quot;&quot;</span>
+<span class="n">response</span><span class="p">,</span> <span class="n">predictors</span> <span class="o">=</span> <span class="n">dmatrices</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">drugs_df</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">)</span>
+<span class="n">mutual_indep</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span>
+    <span class="n">response</span><span class="p">,</span> <span class="n">predictors</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Poisson</span><span class="p">(</span><span class="n">link</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">log</span><span class="p">()))</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mutual_indep</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:                  count   No. Observations:                    8
+Model:                            GLM   Df Residuals:                        4
+Model Family:                 Poisson   Df Model:                            3
+Link Function:                    log   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -667.53
+Date:                Mon, 10 Aug 2020   Deviance:                       1286.0
+Time:                        00:05:20   Pearson chi2:                 1.41e+03
+No. Iterations:                     5                                         
+Covariance Type:            nonrobust                                         
+=================================================================================
+                    coef    std err          z      P&gt;|z|      [0.025      0.975]
+---------------------------------------------------------------------------------
+Intercept         4.1725      0.065     64.234      0.000       4.045       4.300
+C(alc)[T.yes]     1.7851      0.060     29.872      0.000       1.668       1.902
+C(cig)[T.yes]     0.6493      0.044     14.707      0.000       0.563       0.736
+C(mar)[T.yes]    -0.3154      0.042     -7.431      0.000      -0.399      -0.232
+=================================================================================
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;no&quot;</span><span class="p">]</span>
+<span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;count ~ C(alc, levels=l) + C(cig, levels=l) + C(mar, levels=l) + C(alc, levels=l):C(cig, levels=l) + C(alc, levels=l):C(mar,levels=l) + C(cig,levels=l):C(mar,levels=l)&quot;&quot;&quot;</span>
+<span class="n">response</span><span class="p">,</span> <span class="n">predictors</span> <span class="o">=</span> <span class="n">dmatrices</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">drugs_df</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">)</span>
+<span class="n">homo_association</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span>
+    <span class="n">response</span><span class="p">,</span> <span class="n">predictors</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Poisson</span><span class="p">(</span><span class="n">link</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">log</span><span class="p">()))</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">homo_association</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;AIC: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">homo_association</span><span class="o">.</span><span class="n">aic</span><span class="p">))</span>
+<span class="n">pearson_resid</span> <span class="o">=</span> <span class="n">homo_association</span><span class="o">.</span><span class="n">resid_pearson</span>
+<span class="n">std_resid</span> <span class="o">=</span> <span class="n">homo_association</span><span class="o">.</span><span class="n">resid_response</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">pearson_resid</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">counts</span> <span class="o">=</span> <span class="n">drugs_df</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:                  count   No. Observations:                    8
+Model:                            GLM   Df Residuals:                        1
+Model Family:                 Poisson   Df Model:                            6
+Link Function:                    log   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -24.709
+Date:                Mon, 10 Aug 2020   Deviance:                      0.37399
+Time:                        00:05:20   Pearson chi2:                    0.401
+No. Iterations:                     8                                         
+Covariance Type:            nonrobust                                         
+=================================================================================================================
+                                                    coef    std err          z      P&gt;|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------------------------------------
+Intercept                                         6.8139      0.033    205.699      0.000       6.749       6.879
+C(alc, levels=l)[T.no]                           -5.5283      0.452    -12.225      0.000      -6.415      -4.642
+C(cig, levels=l)[T.no]                           -3.0158      0.152    -19.891      0.000      -3.313      -2.719
+C(mar, levels=l)[T.no]                           -0.5249      0.054     -9.669      0.000      -0.631      -0.418
+C(alc, levels=l)[T.no]:C(cig, levels=l)[T.no]     2.0545      0.174     11.803      0.000       1.713       2.396
+C(alc, levels=l)[T.no]:C(mar, levels=l)[T.no]     2.9860      0.465      6.426      0.000       2.075       3.897
+C(cig, levels=l)[T.no]:C(mar, levels=l)[T.no]     2.8479      0.164     17.382      0.000       2.527       3.169
+=================================================================================================================
+AIC: 63.41741423176762
+0.40110051665258983
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                              <span class="n">homo_association</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> 
+                              <span class="n">homo_association</span><span class="o">.</span><span class="n">resid_pearson</span><span class="p">,</span> 
+                              <span class="n">homo_association</span><span class="o">.</span><span class="n">resid_response</span><span class="p">]))</span><span class="o">.</span><span class="n">T</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="s2">&quot;fitted&quot;</span><span class="p">,</span> <span class="s2">&quot;pearsonr_resid&quot;</span><span class="p">,</span> <span class="s2">&quot;std_resid&quot;</span><span class="p">]</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>fitted</th>
+      <th>pearsonr_resid</th>
+      <th>std_resid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>911.0</td>
+      <td>910.38317</td>
+      <td>0.020443</td>
+      <td>0.61683</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>538.0</td>
+      <td>538.61683</td>
+      <td>-0.026578</td>
+      <td>-0.61683</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>44.0</td>
+      <td>44.61683</td>
+      <td>-0.092346</td>
+      <td>-0.61683</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>456.0</td>
+      <td>455.38317</td>
+      <td>0.028905</td>
+      <td>0.61683</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3.0</td>
+      <td>3.61683</td>
+      <td>-0.324341</td>
+      <td>-0.61683</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>43.0</td>
+      <td>42.38317</td>
+      <td>0.094748</td>
+      <td>0.61683</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2.0</td>
+      <td>1.38317</td>
+      <td>0.524479</td>
+      <td>0.61683</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>279.0</td>
+      <td>279.61683</td>
+      <td>-0.036888</td>
+      <td>-0.61683</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">drugs2_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://github.com/saketkc/pyFLGLM/blob/master/data/Drugs2.tsv.gz?raw=true&quot;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s2">&quot;gzip&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">drugs2_df</span> <span class="o">=</span> <span class="n">drugs2_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="s2">&quot;alc&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="s2">&quot;cig&quot;</span><span class="p">})</span>
+<span class="n">drugs2_df</span><span class="p">[</span><span class="s2">&quot;M_yes_byn&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">drugs2_df</span><span class="p">[</span><span class="s2">&quot;M_yes&quot;</span><span class="p">]</span><span class="o">/</span><span class="n">drugs2_df</span><span class="p">[</span><span class="s2">&quot;n&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;no&quot;</span><span class="p">]</span>
+
+<span class="c1">#formula = &quot;&quot;&quot;M_yes/n ~ C(alc, levels=l) + C(cig, levels=l)&quot;&quot;&quot;</span>
+<span class="c1">#formula = &quot;&quot;&quot;I(M_yes/n) ~ C(alc) + C(cig)&quot;&quot;&quot;</span>
+<span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;M_yes_byn ~ C(alc) + C(cig)&quot;&quot;&quot;</span>
+
+<span class="n">response</span><span class="p">,</span> <span class="n">predictors</span> <span class="o">=</span> <span class="n">dmatrices</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">drugs2_df</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">)</span>
+<span class="n">fit</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> 
+             <span class="n">predictors</span><span class="p">,</span> 
+             <span class="n">family</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span><span class="n">link</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">logit</span><span class="p">()),</span>
+             <span class="n">weights</span><span class="o">=</span><span class="n">drugs2_df</span><span class="p">[</span><span class="s2">&quot;n&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:              M_yes_byn   No. Observations:                    4
+Model:                            GLM   Df Residuals:                        1
+Model Family:                Binomial   Df Model:                            2
+Link Function:                  logit   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:               -0.86889
+Date:                Mon, 10 Aug 2020   Deviance:                    0.0017527
+Time:                        00:05:20   Pearson chi2:                  0.00204
+No. Iterations:                     6                                         
+Covariance Type:            nonrobust                                         
+=================================================================================
+                    coef    std err          z      P&gt;|z|      [0.025      0.975]
+---------------------------------------------------------------------------------
+Intercept        -5.4367      5.314     -1.023      0.306     -15.853       4.979
+C(alc)[T.yes]     3.1326      4.304      0.728      0.467      -5.303      11.569
+C(cig)[T.yes]     2.8189      3.920      0.719      0.472      -4.865      10.502
+=================================================================================
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="section-7-5-1">
+<h1>Section 7.5.1<a class="headerlink" href="#section-7-5-1" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crabs_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://github.com/saketkc/pyFLGLM/blob/master/data/Crabs.tsv.gz?raw=true&quot;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s2">&quot;gzip&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">crabs_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>crab</th>
+      <th>y</th>
+      <th>weight</th>
+      <th>width</th>
+      <th>color</th>
+      <th>spine</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>8</td>
+      <td>3.05</td>
+      <td>28.3</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>0</td>
+      <td>1.55</td>
+      <td>22.5</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>9</td>
+      <td>2.30</td>
+      <td>26.0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>0</td>
+      <td>2.10</td>
+      <td>24.8</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5</td>
+      <td>4</td>
+      <td>2.60</td>
+      <td>26.0</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;y ~ 1&quot;&quot;&quot;</span>
+
+<span class="n">response</span><span class="p">,</span> <span class="n">predictors</span> <span class="o">=</span> <span class="n">dmatrices</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">crabs_df</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">)</span>
+<span class="n">fit</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> 
+             <span class="n">predictors</span><span class="p">,</span> 
+             <span class="n">family</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Poisson</span><span class="p">(</span><span class="n">link</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">log</span><span class="p">()))</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:                      y   No. Observations:                  173
+Model:                            GLM   Df Residuals:                      172
+Model Family:                 Poisson   Df Model:                            0
+Link Function:                    log   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -494.04
+Date:                Mon, 10 Aug 2020   Deviance:                       632.79
+Time:                        00:05:21   Pearson chi2:                     584.
+No. Iterations:                     5                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept      1.0713      0.044     24.074      0.000       0.984       1.158
+==============================================================================
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;y ~ 1&quot;&quot;&quot;</span>
+
+<span class="n">response</span><span class="p">,</span> <span class="n">predictors</span> <span class="o">=</span> <span class="n">dmatrices</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">crabs_df</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">)</span>
+<span class="n">fit</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> 
+             <span class="n">predictors</span><span class="p">,</span> 
+             <span class="n">family</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">NegativeBinomial</span><span class="p">(</span><span class="n">link</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">log</span><span class="p">()))</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="s1">&#39;x2&#39;</span><span class="p">)</span>
+<span class="c1">#  (crabs_df[&quot;y&quot;].var()-crabs_df[&quot;y&quot;].mean())/(crabs_df[&quot;y&quot;].mean()**2)#- fit.mu             </span>
+<span class="n">overdispersion</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">pearson_chi2</span> <span class="o">/</span> <span class="n">fit</span><span class="o">.</span><span class="n">df_resid</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Overdispersion: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">overdispersion</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:                      y   No. Observations:                  173
+Model:                            GLM   Df Residuals:                      172
+Model Family:        NegativeBinomial   Df Model:                            0
+Link Function:                    log   Scale:                         0.86643
+Method:                          IRLS   Log-Likelihood:                -444.42
+Date:                Mon, 10 Aug 2020   Deviance:                       224.93
+Time:                        00:05:21   Pearson chi2:                     149.
+No. Iterations:                     7                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept      1.0713      0.082     13.064      0.000       0.911       1.232
+==============================================================================
+Overdispersion: 0.8664294490778556
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.discrete.count_model</span> <span class="k">as</span> <span class="nn">cm</span>
+<span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;y ~ 1&quot;&quot;&quot;</span>
+
+<span class="n">response</span><span class="p">,</span> <span class="n">predictors</span> <span class="o">=</span> <span class="n">dmatrices</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">crabs_df</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">)</span>
+
+<span class="n">fit</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">ZeroInflatedPoisson</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> 
+                             <span class="n">predictors</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: 2.205865
+         Iterations: 6
+         Function evaluations: 8
+         Gradient evaluations: 8
+                     ZeroInflatedPoisson Regression Results                    
+===============================================================================
+Dep. Variable:                       y   No. Observations:                  173
+Model:             ZeroInflatedPoisson   Df Residuals:                      172
+Method:                            MLE   Df Model:                            0
+Date:                 Mon, 10 Aug 2020   Pseudo R-squ.:               2.817e-11
+Time:                         00:05:21   Log-Likelihood:                -381.61
+converged:                        True   LL-Null:                       -381.61
+Covariance Type:             nonrobust   LLR p-value:                       nan
+=================================================================================
+                    coef    std err          z      P&gt;|z|      [0.025      0.975]
+---------------------------------------------------------------------------------
+inflate_const    -0.6139      0.162     -3.794      0.000      -0.931      -0.297
+Intercept         1.5038      0.046     32.956      0.000       1.414       1.593
+=================================================================================
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.discrete.count_model</span> <span class="k">as</span> <span class="nn">cm</span>
+<span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;y ~ 1&quot;&quot;&quot;</span>
+
+<span class="n">response</span><span class="p">,</span> <span class="n">predictors</span> <span class="o">=</span> <span class="n">dmatrices</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">crabs_df</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">)</span>
+
+<span class="n">fit</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">ZeroInflatedNegativeBinomialP</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> 
+                                                           <span class="n">predictors</span><span class="p">,</span> 
+                                                           <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: 2.134980
+         Iterations: 12
+         Function evaluations: 13
+         Gradient evaluations: 13
+                     ZeroInflatedNegativeBinomialP Regression Results                    
+=========================================================================================
+Dep. Variable:                                 y   No. Observations:                  173
+Model:             ZeroInflatedNegativeBinomialP   Df Residuals:                      172
+Method:                                      MLE   Df Model:                            0
+Date:                           Mon, 10 Aug 2020   Pseudo R-squ.:               3.957e-11
+Time:                                   00:05:21   Log-Likelihood:                -369.35
+converged:                                  True   LL-Null:                       -369.35
+Covariance Type:                       nonrobust   LLR p-value:                       nan
+=================================================================================
+                    coef    std err          z      P&gt;|z|      [0.025      0.975]
+---------------------------------------------------------------------------------
+inflate_const    -0.7279      0.183     -3.973      0.000      -1.087      -0.369
+Intercept         1.4653      0.068     21.440      0.000       1.331       1.599
+alpha             0.2242      0.078      2.864      0.004       0.071       0.378
+=================================================================================
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;y ~ weight + color&quot;&quot;&quot;</span>
+
+<span class="n">response</span><span class="p">,</span> <span class="n">predictors</span> <span class="o">=</span> <span class="n">dmatrices</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">crabs_df</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">)</span>
+
+<span class="n">fit</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">ZeroInflatedNegativeBinomialP</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> 
+                                       <span class="n">predictors</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: 2.115471
+         Iterations: 19
+         Function evaluations: 22
+         Gradient evaluations: 22
+</pre></div>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>                     ZeroInflatedNegativeBinomialP Regression Results                    
+=========================================================================================
+Dep. Variable:                                 y   No. Observations:                  173
+Model:             ZeroInflatedNegativeBinomialP   Df Residuals:                      170
+Method:                                      MLE   Df Model:                            2
+Date:                           Mon, 10 Aug 2020   Pseudo R-squ.:                0.009138
+Time:                                   00:05:21   Log-Likelihood:                -365.98
+converged:                                  True   LL-Null:                       -369.35
+Covariance Type:                       nonrobust   LLR p-value:                   0.03421
+=================================================================================
+                    coef    std err          z      P&gt;|z|      [0.025      0.975]
+---------------------------------------------------------------------------------
+inflate_const    -0.8296      0.219     -3.792      0.000      -1.258      -0.401
+Intercept         0.7198      0.429      1.678      0.093      -0.121       1.560
+weight            0.3104      0.132      2.356      0.018       0.052       0.569
+color            -0.0423      0.099     -0.426      0.670      -0.237       0.152
+alpha             0.2434      0.092      2.641      0.008       0.063       0.424
+=================================================================================
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;y ~ weight + color&quot;&quot;&quot;</span>
+
+<span class="n">response</span><span class="p">,</span> <span class="n">predictors</span> <span class="o">=</span> <span class="n">dmatrices</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">crabs_df</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">)</span>
+
+<span class="n">fit</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> 
+             <span class="n">predictors</span><span class="p">,</span> 
+             <span class="n">family</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">NegativeBinomial</span><span class="p">(</span><span class="n">link</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">log</span><span class="p">()))</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="s1">&#39;x2&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:                      y   No. Observations:                  173
+Model:                            GLM   Df Residuals:                      170
+Model Family:        NegativeBinomial   Df Model:                            2
+Link Function:                    log   Scale:                         0.95361
+Method:                          IRLS   Log-Likelihood:                -391.41
+Date:                Mon, 10 Aug 2020   Deviance:                       201.33
+Time:                        00:05:21   Pearson chi2:                     162.
+No. Iterations:                    15                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept     -0.3177      0.532     -0.597      0.550      -1.360       0.725
+weight         0.7055      0.155      4.561      0.000       0.402       1.009
+color         -0.1734      0.115     -1.505      0.132      -0.399       0.052
+==============================================================================
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Saket Choudhary<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>
