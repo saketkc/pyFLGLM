@@ -39,6 +39,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Chapter 4 - Generalized Linear Models: Model Fitting and Inference" href="04_Chapter04.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -76,7 +77,7 @@
   </a>
  </li>
 </ul>
-<ul class="nav sidenav_l1">
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="01_Chapter01.html">
    Chapter 1 - Introduction to Linear and Generalized Linear Models
@@ -145,6 +146,16 @@
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#todo-fix-the-anova-glm-output">
    TODO: Fix the anova_glm output
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Chapter 7 - Models for Count Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#section-7-5-1">
+   Section 7.5.1
   </a>
  </li>
 </ul>
@@ -237,13 +248,13 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: proplot in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (0.6.4)
 Requirement already satisfied: matplotlib in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from proplot) (3.3.0)
-Requirement already satisfied: cycler&gt;=0.10 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (0.10.0)
-Requirement already satisfied: python-dateutil&gt;=2.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2.8.1)
 Requirement already satisfied: pillow&gt;=6.2.0 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (7.2.0)
 Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.3 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2.4.7)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (1.2.0)
+Requirement already satisfied: python-dateutil&gt;=2.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2.8.1)
+Requirement already satisfied: cycler&gt;=0.10 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (0.10.0)
 Requirement already satisfied: numpy&gt;=1.15 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (1.19.1)
-Requirement already satisfied: six in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from cycler&gt;=0.10-&gt;matplotlib-&gt;proplot) (1.15.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (1.2.0)
+Requirement already satisfied: six&gt;=1.5 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from python-dateutil&gt;=2.1-&gt;matplotlib-&gt;proplot) (1.15.0)
 </pre></div>
 </div>
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[33mWARNING: You are using pip version 20.2; however, version 20.2.1 is available.
@@ -275,10 +286,6 @@ You should consider upgrading via the &#39;/opt/hostedtoolcache/Python/3.7.8/x64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="stderr docutils container">
-<pre class="stderr literal-block">Matplotlib is building the font cache; this may take a moment.
-</pre>
-</div>
 <div class="stderr docutils container">
 <pre class="stderr literal-block">/opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages/proplot/config.py:1454: ProPlotWarning: Rebuilding font cache.
 </pre>
@@ -389,7 +396,7 @@ Model Family:                 Poisson   Df Model:                           10
 Link Function:                    log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -114.87
 Date:                Mon, 10 Aug 2020   Deviance:                       43.923
-Time:                        00:05:19   Pearson chi2:                     43.1
+Time:                        00:06:40   Pearson chi2:                     43.1
 No. Iterations:                     5                                         
 Covariance Type:            nonrobust                                         
 =====================================================================================
@@ -526,7 +533,7 @@ Model Family:                 Poisson   Df Model:                            3
 Link Function:                    log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -667.53
 Date:                Mon, 10 Aug 2020   Deviance:                       1286.0
-Time:                        00:05:20   Pearson chi2:                 1.41e+03
+Time:                        00:06:41   Pearson chi2:                 1.41e+03
 No. Iterations:                     5                                         
 Covariance Type:            nonrobust                                         
 =================================================================================
@@ -568,7 +575,7 @@ Model Family:                 Poisson   Df Model:                            6
 Link Function:                    log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -24.709
 Date:                Mon, 10 Aug 2020   Deviance:                      0.37399
-Time:                        00:05:20   Pearson chi2:                    0.401
+Time:                        00:06:41   Pearson chi2:                    0.401
 No. Iterations:                     8                                         
 Covariance Type:            nonrobust                                         
 =================================================================================================================
@@ -582,7 +589,7 @@ C(alc, levels=l)[T.no]:C(cig, levels=l)[T.no]     2.0545      0.174     11.803  
 C(alc, levels=l)[T.no]:C(mar, levels=l)[T.no]     2.9860      0.465      6.426      0.000       2.075       3.897
 C(cig, levels=l)[T.no]:C(mar, levels=l)[T.no]     2.8479      0.164     17.382      0.000       2.527       3.169
 =================================================================================================================
-AIC: 63.41741423176762
+AIC: 63.41741423176761
 0.40110051665258983
 </pre></div>
 </div>
@@ -720,7 +727,7 @@ Model Family:                Binomial   Df Model:                            2
 Link Function:                  logit   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:               -0.86889
 Date:                Mon, 10 Aug 2020   Deviance:                    0.0017527
-Time:                        00:05:20   Pearson chi2:                  0.00204
+Time:                        00:06:41   Pearson chi2:                  0.00204
 No. Iterations:                     6                                         
 Covariance Type:            nonrobust                                         
 =================================================================================
@@ -842,7 +849,7 @@ Model Family:                 Poisson   Df Model:                            0
 Link Function:                    log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -494.04
 Date:                Mon, 10 Aug 2020   Deviance:                       632.79
-Time:                        00:05:21   Pearson chi2:                     584.
+Time:                        00:06:41   Pearson chi2:                     584.
 No. Iterations:                     5                                         
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -879,7 +886,7 @@ Model Family:        NegativeBinomial   Df Model:                            0
 Link Function:                    log   Scale:                         0.86643
 Method:                          IRLS   Log-Likelihood:                -444.42
 Date:                Mon, 10 Aug 2020   Deviance:                       224.93
-Time:                        00:05:21   Pearson chi2:                     149.
+Time:                        00:06:41   Pearson chi2:                     149.
 No. Iterations:                     7                                         
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -917,7 +924,7 @@ Dep. Variable:                       y   No. Observations:                  173
 Model:             ZeroInflatedPoisson   Df Residuals:                      172
 Method:                            MLE   Df Model:                            0
 Date:                 Mon, 10 Aug 2020   Pseudo R-squ.:               2.817e-11
-Time:                         00:05:21   Log-Likelihood:                -381.61
+Time:                         00:06:41   Log-Likelihood:                -381.61
 converged:                        True   LL-Null:                       -381.61
 Covariance Type:             nonrobust   LLR p-value:                       nan
 =================================================================================
@@ -956,7 +963,7 @@ Dep. Variable:                                 y   No. Observations:            
 Model:             ZeroInflatedNegativeBinomialP   Df Residuals:                      172
 Method:                                      MLE   Df Model:                            0
 Date:                           Mon, 10 Aug 2020   Pseudo R-squ.:               3.957e-11
-Time:                                   00:05:21   Log-Likelihood:                -369.35
+Time:                                   00:06:42   Log-Likelihood:                -369.35
 converged:                                  True   LL-Null:                       -369.35
 Covariance Type:                       nonrobust   LLR p-value:                       nan
 =================================================================================
@@ -996,7 +1003,7 @@ Dep. Variable:                                 y   No. Observations:            
 Model:             ZeroInflatedNegativeBinomialP   Df Residuals:                      170
 Method:                                      MLE   Df Model:                            2
 Date:                           Mon, 10 Aug 2020   Pseudo R-squ.:                0.009138
-Time:                                   00:05:21   Log-Likelihood:                -365.98
+Time:                                   00:06:42   Log-Likelihood:                -365.98
 converged:                                  True   LL-Null:                       -369.35
 Covariance Type:                       nonrobust   LLR p-value:                   0.03421
 =================================================================================
@@ -1034,7 +1041,7 @@ Model Family:        NegativeBinomial   Df Model:                            2
 Link Function:                    log   Scale:                         0.95361
 Method:                          IRLS   Log-Likelihood:                -391.41
 Date:                Mon, 10 Aug 2020   Deviance:                       201.33
-Time:                        00:05:21   Pearson chi2:                     162.
+Time:                        00:06:42   Pearson chi2:                     162.
 No. Iterations:                    15                                         
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -1078,6 +1085,7 @@ color         -0.1734      0.115     -1.505      0.132      -0.399       0.052
     
     <div class='prev-next-bottom'>
         
+    <a class='left-prev' id="prev-link" href="04_Chapter04.html" title="previous page">Chapter 4 - Generalized Linear Models: Model Fitting and Inference</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
