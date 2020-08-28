@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Chapter 7 - Models for Count Data &#8212; Foundations of Linear and Generalized Linear Models with Python</title>
+    <title>15. Chapter 7 - Models for Count Data &#8212; Foundations of Linear and Generalized Linear Models with Python</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="../_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
@@ -39,7 +39,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Chapter 4 - Generalized Linear Models: Model Fitting and Inference" href="04_Chapter04.html" />
+    <link rel="prev" title="12. Chapter 4 - Generalized Linear Models: Model Fitting and Inference" href="04_Chapter04.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -80,82 +80,82 @@
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="01_Chapter01.html">
-   Chapter 1 - Introduction to Linear and Generalized Linear Models
+   1. Chapter 1 - Introduction to Linear and Generalized Linear Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="01_Chapter01.html#code-1-1">
-   Code 1.1
+   2. Code 1.1
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="01_Chapter01.html#linear-model-using-weight-to-predict-satellite-counts">
-   Linear Model Using Weight to Predict Satellite Counts
+   3. Linear Model Using Weight to Predict Satellite Counts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="01_Chapter01.html#using-both-qualitative-and-quantitative-variables">
-   Using both qualitative and quantitative variables
+   4. Using both qualitative and quantitative variables
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="02_Chapter02.html">
-   Chapter 2 - Linear Models: Least Squares Theory
+   5. Chapter 2 - Linear Models: Least Squares Theory
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="02_Chapter02.html#anova">
-   ANOVA
+   6. ANOVA
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html">
-   Chapter 3 - Normal Linear Models: Statistical Inference
+   7. Chapter 3 - Normal Linear Models: Statistical Inference
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#todo-derivation-of-the-ci-for-mean-and-future-y">
-   TODO: Derivation of the CI for mean and future y
+   8. TODO: Derivation of the CI for mean and future y
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#simpson-s-paradox">
-   Simpson’s paradox
+   9. Simpson’s paradox
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#partial-correlation">
-   Partial Correlation
+   10. Partial Correlation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#todo-testing-contrats-as-a-general-linear-hypothesis">
-   TODO: Testing contrats as a general linear hypothesis
+   11. TODO: Testing contrats as a general linear hypothesis
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html">
-   Chapter 4 - Generalized Linear Models: Model Fitting and Inference
+   12. Chapter 4 - Generalized Linear Models: Model Fitting and Inference
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#gamma-glms-for-house-selling-price-data">
-   Gamma GLMs for House Selling Price Data
+   13. Gamma GLMs for House Selling Price Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#todo-fix-the-anova-glm-output">
-   TODO: Fix the anova_glm output
+   14. TODO: Fix the anova_glm output
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Chapter 7 - Models for Count Data
+   15. Chapter 7 - Models for Count Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#section-7-5-1">
-   Section 7.5.1
+   16. Section 7.5.1
   </a>
  </li>
 </ul>
@@ -238,7 +238,7 @@
                 
   <p><a href="https://colab.research.google.com/github/saketkc/pyFLGLM/blob/master/Chapters/07_Chapter07.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
 <div class="section" id="chapter-7-models-for-count-data">
-<h1>Chapter 7 - Models for Count Data<a class="headerlink" href="#chapter-7-models-for-count-data" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">15. </span>Chapter 7 - Models for Count Data<a class="headerlink" href="#chapter-7-models-for-count-data" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!pip install proplot
@@ -247,24 +247,17 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: proplot in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (0.6.4)
+Requirement already satisfied: matplotlib in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from proplot) (3.3.1)
 </pre></div>
 </div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: matplotlib in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from proplot) (3.3.0)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.3 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2.4.7)
 Requirement already satisfied: python-dateutil&gt;=2.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2.8.1)
-Requirement already satisfied: pillow&gt;=6.2.0 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (7.2.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (1.2.0)
+Requirement already satisfied: certifi&gt;=2020.06.20 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2020.6.20)
 Requirement already satisfied: cycler&gt;=0.10 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (0.10.0)
-</pre></div>
-</div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: kiwisolver&gt;=1.0.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (1.2.0)
 Requirement already satisfied: numpy&gt;=1.15 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (1.19.1)
-Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.3 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2.4.7)
-</pre></div>
-</div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: six&gt;=1.5 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from python-dateutil&gt;=2.1-&gt;matplotlib-&gt;proplot) (1.15.0)
-</pre></div>
-</div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[33mWARNING: You are using pip version 20.2.1; however, version 20.2.2 is available.
-You should consider upgrading via the &#39;/opt/hostedtoolcache/Python/3.7.8/x64/bin/python -m pip install --upgrade pip&#39; command.[0m
+Requirement already satisfied: pillow&gt;=6.2.0 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (7.2.0)
+Requirement already satisfied: six&gt;=1.5 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from python-dateutil&gt;=2.1-&gt;matplotlib-&gt;proplot) (1.15.0)
 </pre></div>
 </div>
 </div>
@@ -401,8 +394,8 @@ Model:                            GLM   Df Residuals:                       52
 Model Family:                 Poisson   Df Model:                           10
 Link Function:                    log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -114.87
-Date:                Thu, 13 Aug 2020   Deviance:                       43.923
-Time:                        05:43:52   Pearson chi2:                     43.1
+Date:                Fri, 28 Aug 2020   Deviance:                       43.923
+Time:                        19:10:10   Pearson chi2:                     43.1
 No. Iterations:                     5                                         
 Covariance Type:            nonrobust                                         
 =====================================================================================
@@ -538,8 +531,8 @@ Model:                            GLM   Df Residuals:                        4
 Model Family:                 Poisson   Df Model:                            3
 Link Function:                    log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -667.53
-Date:                Thu, 13 Aug 2020   Deviance:                       1286.0
-Time:                        05:43:52   Pearson chi2:                 1.41e+03
+Date:                Fri, 28 Aug 2020   Deviance:                       1286.0
+Time:                        19:10:11   Pearson chi2:                 1.41e+03
 No. Iterations:                     5                                         
 Covariance Type:            nonrobust                                         
 =================================================================================
@@ -580,8 +573,8 @@ Model:                            GLM   Df Residuals:                        1
 Model Family:                 Poisson   Df Model:                            6
 Link Function:                    log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -24.709
-Date:                Thu, 13 Aug 2020   Deviance:                      0.37399
-Time:                        05:43:52   Pearson chi2:                    0.401
+Date:                Fri, 28 Aug 2020   Deviance:                      0.37399
+Time:                        19:10:11   Pearson chi2:                    0.401
 No. Iterations:                     8                                         
 Covariance Type:            nonrobust                                         
 =================================================================================================================
@@ -732,8 +725,8 @@ Model:                            GLM   Df Residuals:                        1
 Model Family:                Binomial   Df Model:                            2
 Link Function:                  logit   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:               -0.86889
-Date:                Thu, 13 Aug 2020   Deviance:                    0.0017527
-Time:                        05:43:53   Pearson chi2:                  0.00204
+Date:                Fri, 28 Aug 2020   Deviance:                    0.0017527
+Time:                        19:10:11   Pearson chi2:                  0.00204
 No. Iterations:                     6                                         
 Covariance Type:            nonrobust                                         
 =================================================================================
@@ -749,7 +742,7 @@ C(cig)[T.yes]     2.8189      3.920      0.719      0.472      -4.865      10.50
 </div>
 </div>
 <div class="section" id="section-7-5-1">
-<h1>Section 7.5.1<a class="headerlink" href="#section-7-5-1" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">16. </span>Section 7.5.1<a class="headerlink" href="#section-7-5-1" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crabs_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://github.com/saketkc/pyFLGLM/blob/master/data/Crabs.tsv.gz?raw=true&quot;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s2">&quot;gzip&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -854,8 +847,8 @@ Model:                            GLM   Df Residuals:                      172
 Model Family:                 Poisson   Df Model:                            0
 Link Function:                    log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -494.04
-Date:                Thu, 13 Aug 2020   Deviance:                       632.79
-Time:                        05:43:53   Pearson chi2:                     584.
+Date:                Fri, 28 Aug 2020   Deviance:                       632.79
+Time:                        19:10:12   Pearson chi2:                     584.
 No. Iterations:                     5                                         
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -891,8 +884,8 @@ Model:                            GLM   Df Residuals:                      172
 Model Family:        NegativeBinomial   Df Model:                            0
 Link Function:                    log   Scale:                         0.86643
 Method:                          IRLS   Log-Likelihood:                -444.42
-Date:                Thu, 13 Aug 2020   Deviance:                       224.93
-Time:                        05:43:53   Pearson chi2:                     149.
+Date:                Fri, 28 Aug 2020   Deviance:                       224.93
+Time:                        19:10:12   Pearson chi2:                     149.
 No. Iterations:                     7                                         
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -929,8 +922,8 @@ Overdispersion: 0.8664294490778556
 Dep. Variable:                       y   No. Observations:                  173
 Model:             ZeroInflatedPoisson   Df Residuals:                      172
 Method:                            MLE   Df Model:                            0
-Date:                 Thu, 13 Aug 2020   Pseudo R-squ.:               2.817e-11
-Time:                         05:43:53   Log-Likelihood:                -381.61
+Date:                 Fri, 28 Aug 2020   Pseudo R-squ.:               2.817e-11
+Time:                         19:10:12   Log-Likelihood:                -381.61
 converged:                        True   LL-Null:                       -381.61
 Covariance Type:             nonrobust   LLR p-value:                       nan
 =================================================================================
@@ -968,8 +961,8 @@ Intercept         1.5038      0.046     32.956      0.000       1.414       1.59
 Dep. Variable:                                 y   No. Observations:                  173
 Model:             ZeroInflatedNegativeBinomialP   Df Residuals:                      172
 Method:                                      MLE   Df Model:                            0
-Date:                           Thu, 13 Aug 2020   Pseudo R-squ.:               3.957e-11
-Time:                                   05:43:53   Log-Likelihood:                -369.35
+Date:                           Fri, 28 Aug 2020   Pseudo R-squ.:               3.957e-11
+Time:                                   19:10:12   Log-Likelihood:                -369.35
 converged:                                  True   LL-Null:                       -369.35
 Covariance Type:                       nonrobust   LLR p-value:                       nan
 =================================================================================
@@ -1008,8 +1001,8 @@ alpha             0.2242      0.078      2.864      0.004       0.071       0.37
 Dep. Variable:                                 y   No. Observations:                  173
 Model:             ZeroInflatedNegativeBinomialP   Df Residuals:                      170
 Method:                                      MLE   Df Model:                            2
-Date:                           Thu, 13 Aug 2020   Pseudo R-squ.:                0.009138
-Time:                                   05:43:53   Log-Likelihood:                -365.98
+Date:                           Fri, 28 Aug 2020   Pseudo R-squ.:                0.009138
+Time:                                   19:10:12   Log-Likelihood:                -365.98
 converged:                                  True   LL-Null:                       -369.35
 Covariance Type:                       nonrobust   LLR p-value:                   0.03421
 =================================================================================
@@ -1046,8 +1039,8 @@ Model:                            GLM   Df Residuals:                      170
 Model Family:        NegativeBinomial   Df Model:                            2
 Link Function:                    log   Scale:                         0.95361
 Method:                          IRLS   Log-Likelihood:                -391.41
-Date:                Thu, 13 Aug 2020   Deviance:                       201.33
-Time:                        05:43:53   Pearson chi2:                     162.
+Date:                Fri, 28 Aug 2020   Deviance:                       201.33
+Time:                        19:10:12   Pearson chi2:                     162.
 No. Iterations:                    15                                         
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -1091,7 +1084,7 @@ color         -0.1734      0.115     -1.505      0.132      -0.399       0.052
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="04_Chapter04.html" title="previous page">Chapter 4 - Generalized Linear Models: Model Fitting and Inference</a>
+    <a class='left-prev' id="prev-link" href="04_Chapter04.html" title="previous page"><span class="section-number">12. </span>Chapter 4 - Generalized Linear Models: Model Fitting and Inference</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

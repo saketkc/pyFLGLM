@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Chapter 4 - Generalized Linear Models: Model Fitting and Inference &#8212; Foundations of Linear and Generalized Linear Models with Python</title>
+    <title>12. Chapter 4 - Generalized Linear Models: Model Fitting and Inference &#8212; Foundations of Linear and Generalized Linear Models with Python</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="../_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
@@ -39,8 +39,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Chapter 7 - Models for Count Data" href="07_Chapter07.html" />
-    <link rel="prev" title="Chapter 3 - Normal Linear Models: Statistical Inference" href="03_Chapter03.html" />
+    <link rel="next" title="15. Chapter 7 - Models for Count Data" href="07_Chapter07.html" />
+    <link rel="prev" title="7. Chapter 3 - Normal Linear Models: Statistical Inference" href="03_Chapter03.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -81,82 +81,82 @@
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="01_Chapter01.html">
-   Chapter 1 - Introduction to Linear and Generalized Linear Models
+   1. Chapter 1 - Introduction to Linear and Generalized Linear Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="01_Chapter01.html#code-1-1">
-   Code 1.1
+   2. Code 1.1
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="01_Chapter01.html#linear-model-using-weight-to-predict-satellite-counts">
-   Linear Model Using Weight to Predict Satellite Counts
+   3. Linear Model Using Weight to Predict Satellite Counts
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="01_Chapter01.html#using-both-qualitative-and-quantitative-variables">
-   Using both qualitative and quantitative variables
+   4. Using both qualitative and quantitative variables
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="02_Chapter02.html">
-   Chapter 2 - Linear Models: Least Squares Theory
+   5. Chapter 2 - Linear Models: Least Squares Theory
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="02_Chapter02.html#anova">
-   ANOVA
+   6. ANOVA
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html">
-   Chapter 3 - Normal Linear Models: Statistical Inference
+   7. Chapter 3 - Normal Linear Models: Statistical Inference
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#todo-derivation-of-the-ci-for-mean-and-future-y">
-   TODO: Derivation of the CI for mean and future y
+   8. TODO: Derivation of the CI for mean and future y
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#simpson-s-paradox">
-   Simpson’s paradox
+   9. Simpson’s paradox
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#partial-correlation">
-   Partial Correlation
+   10. Partial Correlation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_Chapter03.html#todo-testing-contrats-as-a-general-linear-hypothesis">
-   TODO: Testing contrats as a general linear hypothesis
+   11. TODO: Testing contrats as a general linear hypothesis
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Chapter 4 - Generalized Linear Models: Model Fitting and Inference
+   12. Chapter 4 - Generalized Linear Models: Model Fitting and Inference
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#gamma-glms-for-house-selling-price-data">
-   Gamma GLMs for House Selling Price Data
+   13. Gamma GLMs for House Selling Price Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="#todo-fix-the-anova-glm-output">
-   TODO: Fix the anova_glm output
+   14. TODO: Fix the anova_glm output
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="07_Chapter07.html">
-   Chapter 7 - Models for Count Data
+   15. Chapter 7 - Models for Count Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="07_Chapter07.html#section-7-5-1">
-   Section 7.5.1
+   16. Section 7.5.1
   </a>
  </li>
 </ul>
@@ -239,7 +239,7 @@
                 
   <p><a href="https://colab.research.google.com/github/saketkc/pyFLGLM/blob/master/Chapters/04_Chapter04.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
 <div class="section" id="chapter-4-generalized-linear-models-model-fitting-and-inference">
-<h1>Chapter 4 - Generalized Linear Models: Model Fitting and Inference<a class="headerlink" href="#chapter-4-generalized-linear-models-model-fitting-and-inference" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">12. </span>Chapter 4 - Generalized Linear Models: Model Fitting and Inference<a class="headerlink" href="#chapter-4-generalized-linear-models-model-fitting-and-inference" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
@@ -669,7 +669,7 @@ strong multicollinearity problems or that the design matrix is singular.
 </div>
 </div>
 <div class="section" id="gamma-glms-for-house-selling-price-data">
-<h1>Gamma GLMs for House Selling Price Data<a class="headerlink" href="#gamma-glms-for-house-selling-price-data" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">13. </span>Gamma GLMs for House Selling Price Data<a class="headerlink" href="#gamma-glms-for-house-selling-price-data" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;price ~ size + new + beds + size:new + size:beds&quot;&quot;&quot;</span>
@@ -761,7 +761,7 @@ size:beds      0.0100      0.013      0.796      0.426      -0.015       0.035
 </div>
 </div>
 <div class="section" id="todo-fix-the-anova-glm-output">
-<h1>TODO: Fix the anova_glm output<a class="headerlink" href="#todo-fix-the-anova-glm-output" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">14. </span>TODO: Fix the anova_glm output<a class="headerlink" href="#todo-fix-the-anova-glm-output" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;price ~ size + new + size:new&quot;&quot;&quot;</span>
@@ -896,8 +896,8 @@ size:new       0.0619      0.022      2.855      0.004       0.019       0.104
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="03_Chapter03.html" title="previous page">Chapter 3 - Normal Linear Models: Statistical Inference</a>
-    <a class='right-next' id="next-link" href="07_Chapter07.html" title="next page">Chapter 7 - Models for Count Data</a>
+    <a class='left-prev' id="prev-link" href="03_Chapter03.html" title="previous page"><span class="section-number">7. </span>Chapter 3 - Normal Linear Models: Statistical Inference</a>
+    <a class='right-next' id="next-link" href="07_Chapter07.html" title="next page"><span class="section-number">15. </span>Chapter 7 - Models for Count Data</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
