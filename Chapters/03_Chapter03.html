@@ -39,7 +39,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="10. Chapter 4 - Generalized Linear Models: Model Fitting and Inference" href="04_Chapter04.html" />
+    <link rel="next" title="6. Chapter 4 - Generalized Linear Models: Model Fitting and Inference" href="04_Chapter04.html" />
     <link rel="prev" title="4. Chapter 2 - Linear Models: Least Squares Theory" href="02_Chapter02.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -105,48 +105,28 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="#todo-derivation-of-the-ci-for-mean-and-future-y">
-   6. TODO: Derivation of the CI for mean and future y
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="#simpson-s-paradox">
-   7. Simpson’s paradox
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="#partial-correlation">
-   8. Partial Correlation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="#todo-testing-contrats-as-a-general-linear-hypothesis">
-   9. TODO: Testing contrats as a general linear hypothesis
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html">
-   10. Chapter 4 - Generalized Linear Models: Model Fitting and Inference
+   6. Chapter 4 - Generalized Linear Models: Model Fitting and Inference
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#gamma-glms-for-house-selling-price-data">
-   11. Gamma GLMs for House Selling Price Data
+   7. Gamma GLMs for House Selling Price Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_Chapter04.html#todo-fix-the-anova-glm-output">
-   12. TODO: Fix the anova_glm output
+   8. TODO: Fix the anova_glm output
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="07_Chapter07.html">
-   13. Chapter 7 - Models for Count Data
+   9. Chapter 7 - Models for Count Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="07_Chapter07.html#section-7-5-1">
-   14. Section 7.5.1
+   10. Section 7.5.1
   </a>
  </li>
 </ul>
@@ -218,7 +198,29 @@
             <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#todo-derivation-of-the-ci-for-mean-and-future-y">
+   5.1. TODO: Derivation of the CI for mean and future y
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simpson-s-paradox">
+   5.2. Simpson’s paradox
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#partial-correlation">
+   5.3. Partial Correlation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#todo-testing-contrats-as-a-general-linear-hypothesis">
+   5.4. TODO: Testing contrats as a general linear hypothesis
+  </a>
+ </li>
+</ul>
+
         </nav>
     </div>
 </div>
@@ -605,9 +607,8 @@ Residual SE: 53.33
 </div>
 <p><strong>Interpretation</strong>:  If the model truly holds, the ‘mean_ci_lower’ and ‘mean_ci_upper’ reflects
 the 95% confidence interval where the population mean will lie. While ‘obs_ci_lower’ and ‘obs_ci_upper’ reflects the 95% CI where the future (predicted) will lie.</p>
-</div>
 <div class="section" id="todo-derivation-of-the-ci-for-mean-and-future-y">
-<h1><span class="section-number">6. </span>TODO: Derivation of the CI for mean and future y<a class="headerlink" href="#todo-derivation-of-the-ci-for-mean-and-future-y" title="Permalink to this headline">¶</a></h1>
+<h2><span class="section-number">5.1. </span>TODO: Derivation of the CI for mean and future y<a class="headerlink" href="#todo-derivation-of-the-ci-for-mean-and-future-y" title="Permalink to this headline">¶</a></h2>
 <p>Also see <a class="reference external" href="https://stats.stackexchange.com/questions/16493/difference-between-confidence-intervals-and-prediction-intervals/271232#271232">CrossValidated</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -748,7 +749,7 @@ Residual SE: 47.39
 <p>The increase in <span class="math notranslate nohighlight">\(R^2\)</span> is minimal.</p>
 </div>
 <div class="section" id="simpson-s-paradox">
-<h1><span class="section-number">7. </span>Simpson’s paradox<a class="headerlink" href="#simpson-s-paradox" title="Permalink to this headline">¶</a></h1>
+<h2><span class="section-number">5.2. </span>Simpson’s paradox<a class="headerlink" href="#simpson-s-paradox" title="Permalink to this headline">¶</a></h2>
 <p>Consider adding beds as another explanatory variable.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -855,7 +856,7 @@ Residual SE: 53.19
 <p>Including beds leads to a reduced <span class="math notranslate nohighlight">\(R^2\)</span>!! Thus, once <code class="docutils literal notranslate"><span class="pre">size</span></code> and <code class="docutils literal notranslate"><span class="pre">new</span></code> are in the model, it does not help to add beds. Although the marginal effect of beds is positive (as shown by the modest positive correlation), the estimated partial effect of beds is negative. This illustrates Simpson’s paradox.</p>
 </div>
 <div class="section" id="partial-correlation">
-<h1><span class="section-number">8. </span>Partial Correlation<a class="headerlink" href="#partial-correlation" title="Permalink to this headline">¶</a></h1>
+<h2><span class="section-number">5.3. </span>Partial Correlation<a class="headerlink" href="#partial-correlation" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">regress_sizenew_on_price</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;price ~ size + new&quot;&quot;&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">house_df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
@@ -874,7 +875,7 @@ Residual SE: 53.19
 <p>Partial correlation between selling price and beds. Found using 1) finding the residuals for predicting selling price using size and new 2) finding the residual for predicting beds using size and new and 3) correlating the residuals in 1 and 2.</p>
 </div>
 <div class="section" id="todo-testing-contrats-as-a-general-linear-hypothesis">
-<h1><span class="section-number">9. </span>TODO: Testing contrats as a general linear hypothesis<a class="headerlink" href="#todo-testing-contrats-as-a-general-linear-hypothesis" title="Permalink to this headline">¶</a></h1>
+<h2><span class="section-number">5.4. </span>TODO: Testing contrats as a general linear hypothesis<a class="headerlink" href="#todo-testing-contrats-as-a-general-linear-hypothesis" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.stats.libqsturng</span> <span class="kn">import</span> <span class="n">psturng</span><span class="p">,</span> <span class="n">qsturng</span>
@@ -898,6 +899,7 @@ Residual SE: 53.19
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.3113791139604563
 </pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -932,7 +934,7 @@ Residual SE: 53.19
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="02_Chapter02.html" title="previous page"><span class="section-number">4. </span>Chapter 2 - Linear Models: Least Squares Theory</a>
-    <a class='right-next' id="next-link" href="04_Chapter04.html" title="next page"><span class="section-number">10. </span>Chapter 4 - Generalized Linear Models: Model Fitting and Inference</a>
+    <a class='right-next' id="next-link" href="04_Chapter04.html" title="next page"><span class="section-number">6. </span>Chapter 4 - Generalized Linear Models: Model Fitting and Inference</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
