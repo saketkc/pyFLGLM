@@ -39,7 +39,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="9. Chapter 7 - Models for Count Data" href="07_Chapter07.html" />
+    <link rel="next" title="7. Chapter 7 - Models for Count Data" href="07_Chapter07.html" />
     <link rel="prev" title="5. Chapter 3 - Normal Linear Models: Statistical Inference" href="03_Chapter03.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -110,23 +110,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="#gamma-glms-for-house-selling-price-data">
-   7. Gamma GLMs for House Selling Price Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="#todo-fix-the-anova-glm-output">
-   8. TODO: Fix the anova_glm output
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="07_Chapter07.html">
-   9. Chapter 7 - Models for Count Data
+   7. Chapter 7 - Models for Count Data
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="07_Chapter07.html#section-7-5-1">
-   10. Section 7.5.1
+   8. Section 7.5.1
   </a>
  </li>
 </ul>
@@ -198,7 +188,19 @@
             <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gamma-glms-for-house-selling-price-data">
+   6.1. Gamma GLMs for House Selling Price Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#todo-fix-the-anova-glm-output">
+   6.2. TODO: Fix the anova_glm output
+  </a>
+ </li>
+</ul>
+
         </nav>
     </div>
 </div>
@@ -637,9 +639,8 @@ strong multicollinearity problems or that the design matrix is singular.
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="gamma-glms-for-house-selling-price-data">
-<h1><span class="section-number">7. </span>Gamma GLMs for House Selling Price Data<a class="headerlink" href="#gamma-glms-for-house-selling-price-data" title="Permalink to this headline">¶</a></h1>
+<h2><span class="section-number">6.1. </span>Gamma GLMs for House Selling Price Data<a class="headerlink" href="#gamma-glms-for-house-selling-price-data" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;price ~ size + new + beds + size:new + size:beds&quot;&quot;&quot;</span>
@@ -731,7 +732,7 @@ size:beds      0.0100      0.013      0.796      0.426      -0.015       0.035
 </div>
 </div>
 <div class="section" id="todo-fix-the-anova-glm-output">
-<h1><span class="section-number">8. </span>TODO: Fix the anova_glm output<a class="headerlink" href="#todo-fix-the-anova-glm-output" title="Permalink to this headline">¶</a></h1>
+<h2><span class="section-number">6.2. </span>TODO: Fix the anova_glm output<a class="headerlink" href="#todo-fix-the-anova-glm-output" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;price ~ size + new + size:new&quot;&quot;&quot;</span>
@@ -837,6 +838,7 @@ size:new       0.0619      0.022      2.855      0.004       0.019       0.104
 </div>
 </div>
 </div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -867,7 +869,7 @@ size:new       0.0619      0.022      2.855      0.004       0.019       0.104
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="03_Chapter03.html" title="previous page"><span class="section-number">5. </span>Chapter 3 - Normal Linear Models: Statistical Inference</a>
-    <a class='right-next' id="next-link" href="07_Chapter07.html" title="next page"><span class="section-number">9. </span>Chapter 7 - Models for Count Data</a>
+    <a class='right-next' id="next-link" href="07_Chapter07.html" title="next page"><span class="section-number">7. </span>Chapter 7 - Models for Count Data</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
