@@ -2,9 +2,10 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>5. Chapter 7 - Models for Count Data &#8212; Foundations of Linear and Generalized Linear Models with Python</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="../_static/css/index.css" rel="stylesheet">
@@ -14,9 +15,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/spanels-index--0afa1ebdab0bb23b98b56d34c23d9f57.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/spanels-variables--ffc7f74dcb1b9eecba2dbcbc22818714.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script src="../_static/sphinx-book-theme.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -24,12 +25,10 @@
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/mystnb.js"></script>
     <script src="../_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -164,6 +163,28 @@
 
         <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Chapters/07_Chapter07.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/Chapters/07_Chapter07.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
     </div>
 
     <!-- Table of contents -->
@@ -193,28 +214,30 @@
 <h1><span class="section-number">5. </span>Chapter 7 - Models for Count Data<a class="headerlink" href="#chapter-7-models-for-count-data" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!pip install proplot
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install proplot
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: proplot in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (0.6.4)
-Requirement already satisfied: matplotlib in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from proplot) (3.3.1)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (1.2.0)
-Requirement already satisfied: cycler&gt;=0.10 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (0.10.0)
-Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.3 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2.4.7)
-Requirement already satisfied: python-dateutil&gt;=2.1 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2.8.1)
-Requirement already satisfied: certifi&gt;=2020.06.20 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2020.6.20)
-Requirement already satisfied: pillow&gt;=6.2.0 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (7.2.0)
-Requirement already satisfied: numpy&gt;=1.15 in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (1.19.1)
-Requirement already satisfied: six in /opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages (from cycler&gt;=0.10-&gt;matplotlib-&gt;proplot) (1.15.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: proplot in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (0.6.4)
+Requirement already satisfied: matplotlib in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from proplot) (3.3.2)
+Requirement already satisfied: python-dateutil&gt;=2.1 in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2.8.1)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (1.2.0)
+Requirement already satisfied: numpy&gt;=1.15 in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (1.19.2)
+Requirement already satisfied: cycler&gt;=0.10 in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (0.10.0)
+Requirement already satisfied: certifi&gt;=2020.06.20 in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2020.6.20)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.3 in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2.4.7)
+Requirement already satisfied: pillow&gt;=6.2.0 in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (7.2.0)
+Requirement already satisfied: six&gt;=1.5 in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from python-dateutil&gt;=2.1-&gt;matplotlib-&gt;proplot) (1.15.0)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">proplot</span> <span class="k">as</span> <span class="nn">plot</span>
@@ -226,7 +249,7 @@ Requirement already satisfied: six in /opt/hostedtoolcache/Python/3.7.8/x64/lib/
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
 
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
-<span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<span class="o">%</span><span class="k">pylab</span> inline
 
 
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;axes.labelweight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;bold&quot;</span>
@@ -235,18 +258,20 @@ Requirement already satisfied: six in /opt/hostedtoolcache/Python/3.7.8/x64/lib/
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="stderr docutils container">
-<pre class="stderr literal-block">/opt/hostedtoolcache/Python/3.7.8/x64/lib/python3.7/site-packages/proplot/config.py:1454: ProPlotWarning: Rebuilding font cache.
-</pre>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matplotlib is building the font cache; this may take a moment.
+</pre></div>
 </div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/proplot/config.py:1454: ProPlotWarning: Rebuilding font cache.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cancer_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://github.com/saketkc/pyFLGLM/blob/master/data/Cancer.tsv.gz?raw=true&quot;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s2">&quot;gzip&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cancer_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://github.com/saketkc/pyFLGLM/blob/master/data/Cancer.tsv.gz?raw=true&quot;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s2">&quot;gzip&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">cancer_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -324,7 +349,7 @@ Requirement already satisfied: six in /opt/hostedtoolcache/Python/3.7.8/x64/lib/
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cancer_df</span><span class="p">[</span><span class="s2">&quot;logrisktime&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">cancer_df</span><span class="p">[</span><span class="s2">&quot;risktime&quot;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cancer_df</span><span class="p">[</span><span class="s2">&quot;logrisktime&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">cancer_df</span><span class="p">[</span><span class="s2">&quot;risktime&quot;</span><span class="p">])</span>
 
 <span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;count ~ C(histology) + C(stage) + C(time)&quot;&quot;&quot;</span>
 <span class="n">response</span><span class="p">,</span> <span class="n">predictors</span> <span class="o">=</span> <span class="n">dmatrices</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">cancer_df</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">)</span>
@@ -337,15 +362,15 @@ Requirement already satisfied: six in /opt/hostedtoolcache/Python/3.7.8/x64/lib/
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
 ==============================================================================
 Dep. Variable:                  count   No. Observations:                   63
 Model:                            GLM   Df Residuals:                       52
 Model Family:                 Poisson   Df Model:                           10
 Link Function:                    log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -114.87
-Date:                Fri, 28 Aug 2020   Deviance:                       43.923
-Time:                        19:37:32   Pearson chi2:                     43.1
+Date:                Sun, 20 Sep 2020   Deviance:                       43.923
+Time:                        21:57:09   Pearson chi2:                     43.1
 No. Iterations:                     5                                         
 Covariance Type:            nonrobust                                         
 =====================================================================================
@@ -370,7 +395,7 @@ C(time)[T.7]         -0.1752      0.250     -0.701      0.483      -0.665       
 <p>The increasing coefficients with stage reflect the higher mortality with stage. Stage 3 mortalites are <span class="math notranslate nohighlight">\(exp(1.324) = 3.76\)</span> times higher than staeg 1.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">drugs_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://github.com/saketkc/pyFLGLM/blob/master/data/Drugs.tsv.gz?raw=true&quot;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s2">&quot;gzip&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">drugs_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://github.com/saketkc/pyFLGLM/blob/master/data/Drugs.tsv.gz?raw=true&quot;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s2">&quot;gzip&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">drugs_df</span> <span class="o">=</span> <span class="n">drugs_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="s2">&quot;alc&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="s2">&quot;cig&quot;</span><span class="p">,</span> <span class="s2">&quot;M&quot;</span><span class="p">:</span> <span class="s2">&quot;mar&quot;</span><span class="p">})</span>
 <span class="n">drugs_df</span>
 </pre></div>
@@ -464,25 +489,24 @@ C(time)[T.7]         -0.1752      0.250     -0.701      0.483      -0.665       
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;count ~ C(alc) + C(cig) + C(mar)&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;count ~ C(alc) + C(cig) + C(mar)&quot;&quot;&quot;</span>
 <span class="n">response</span><span class="p">,</span> <span class="n">predictors</span> <span class="o">=</span> <span class="n">dmatrices</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">drugs_df</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">)</span>
 <span class="n">mutual_indep</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span>
     <span class="n">response</span><span class="p">,</span> <span class="n">predictors</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Poisson</span><span class="p">(</span><span class="n">link</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">log</span><span class="p">()))</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">mutual_indep</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
-
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
 ==============================================================================
 Dep. Variable:                  count   No. Observations:                    8
 Model:                            GLM   Df Residuals:                        4
 Model Family:                 Poisson   Df Model:                            3
 Link Function:                    log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -667.53
-Date:                Fri, 28 Aug 2020   Deviance:                       1286.0
-Time:                        19:37:32   Pearson chi2:                 1.41e+03
+Date:                Sun, 20 Sep 2020   Deviance:                       1286.0
+Time:                        21:57:10   Pearson chi2:                 1.41e+03
 No. Iterations:                     5                                         
 Covariance Type:            nonrobust                                         
 =================================================================================
@@ -499,7 +523,7 @@ C(mar)[T.yes]    -0.3154      0.042     -7.431      0.000      -0.399      -0.23
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;no&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;no&quot;</span><span class="p">]</span>
 <span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;count ~ C(alc, levels=l) + C(cig, levels=l) + C(mar, levels=l) + C(alc, levels=l):C(cig, levels=l) + C(alc, levels=l):C(mar,levels=l) + C(cig,levels=l):C(mar,levels=l)&quot;&quot;&quot;</span>
 <span class="n">response</span><span class="p">,</span> <span class="n">predictors</span> <span class="o">=</span> <span class="n">dmatrices</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">drugs_df</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">)</span>
 <span class="n">homo_association</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span>
@@ -516,15 +540,15 @@ C(mar)[T.yes]    -0.3154      0.042     -7.431      0.000      -0.399      -0.23
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
 ==============================================================================
 Dep. Variable:                  count   No. Observations:                    8
 Model:                            GLM   Df Residuals:                        1
 Model Family:                 Poisson   Df Model:                            6
 Link Function:                    log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -24.709
-Date:                Fri, 28 Aug 2020   Deviance:                      0.37399
-Time:                        19:37:32   Pearson chi2:                    0.401
+Date:                Sun, 20 Sep 2020   Deviance:                      0.37399
+Time:                        21:57:10   Pearson chi2:                    0.401
 No. Iterations:                     8                                         
 Covariance Type:            nonrobust                                         
 =================================================================================================================
@@ -538,7 +562,7 @@ C(alc, levels=l)[T.no]:C(cig, levels=l)[T.no]     2.0545      0.174     11.803  
 C(alc, levels=l)[T.no]:C(mar, levels=l)[T.no]     2.9860      0.465      6.426      0.000       2.075       3.897
 C(cig, levels=l)[T.no]:C(mar, levels=l)[T.no]     2.8479      0.164     17.382      0.000       2.527       3.169
 =================================================================================================================
-AIC: 63.41741423176762
+AIC: 63.41741423176761
 0.40110051665258983
 </pre></div>
 </div>
@@ -546,7 +570,7 @@ AIC: 63.41741423176762
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
                               <span class="n">homo_association</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> 
                               <span class="n">homo_association</span><span class="o">.</span><span class="n">resid_pearson</span><span class="p">,</span> 
                               <span class="n">homo_association</span><span class="o">.</span><span class="n">resid_response</span><span class="p">]))</span><span class="o">.</span><span class="n">T</span>
@@ -643,7 +667,7 @@ AIC: 63.41741423176762
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">drugs2_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://github.com/saketkc/pyFLGLM/blob/master/data/Drugs2.tsv.gz?raw=true&quot;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s2">&quot;gzip&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">drugs2_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://github.com/saketkc/pyFLGLM/blob/master/data/Drugs2.tsv.gz?raw=true&quot;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s2">&quot;gzip&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">drugs2_df</span> <span class="o">=</span> <span class="n">drugs2_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="s2">&quot;alc&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="s2">&quot;cig&quot;</span><span class="p">})</span>
 <span class="n">drugs2_df</span><span class="p">[</span><span class="s2">&quot;M_yes_byn&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">drugs2_df</span><span class="p">[</span><span class="s2">&quot;M_yes&quot;</span><span class="p">]</span><span class="o">/</span><span class="n">drugs2_df</span><span class="p">[</span><span class="s2">&quot;n&quot;</span><span class="p">]</span>
 </pre></div>
@@ -652,7 +676,7 @@ AIC: 63.41741423176762
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;no&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;no&quot;</span><span class="p">]</span>
 
 <span class="c1">#formula = &quot;&quot;&quot;M_yes/n ~ C(alc, levels=l) + C(cig, levels=l)&quot;&quot;&quot;</span>
 <span class="c1">#formula = &quot;&quot;&quot;I(M_yes/n) ~ C(alc) + C(cig)&quot;&quot;&quot;</span>
@@ -668,15 +692,15 @@ AIC: 63.41741423176762
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
 ==============================================================================
 Dep. Variable:              M_yes_byn   No. Observations:                    4
 Model:                            GLM   Df Residuals:                        1
 Model Family:                Binomial   Df Model:                            2
 Link Function:                  logit   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:               -0.86889
-Date:                Fri, 28 Aug 2020   Deviance:                    0.0017527
-Time:                        19:37:32   Pearson chi2:                  0.00204
+Date:                Sun, 20 Sep 2020   Deviance:                    0.0017527
+Time:                        21:57:10   Pearson chi2:                  0.00204
 No. Iterations:                     6                                         
 Covariance Type:            nonrobust                                         
 =================================================================================
@@ -694,7 +718,7 @@ C(cig)[T.yes]     2.8189      3.920      0.719      0.472      -4.865      10.50
 <h2><span class="section-number">5.1. </span>Section 7.5.1<a class="headerlink" href="#section-7-5-1" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crabs_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://github.com/saketkc/pyFLGLM/blob/master/data/Crabs.tsv.gz?raw=true&quot;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s2">&quot;gzip&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">crabs_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://github.com/saketkc/pyFLGLM/blob/master/data/Crabs.tsv.gz?raw=true&quot;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s2">&quot;gzip&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">crabs_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -778,7 +802,7 @@ C(cig)[T.yes]     2.8189      3.920      0.719      0.472      -4.865      10.50
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;y ~ 1&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;y ~ 1&quot;&quot;&quot;</span>
 
 <span class="n">response</span><span class="p">,</span> <span class="n">predictors</span> <span class="o">=</span> <span class="n">dmatrices</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">crabs_df</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">)</span>
 <span class="n">fit</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> 
@@ -789,15 +813,15 @@ C(cig)[T.yes]     2.8189      3.920      0.719      0.472      -4.865      10.50
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
 ==============================================================================
 Dep. Variable:                      y   No. Observations:                  173
 Model:                            GLM   Df Residuals:                      172
 Model Family:                 Poisson   Df Model:                            0
 Link Function:                    log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -494.04
-Date:                Fri, 28 Aug 2020   Deviance:                       632.79
-Time:                        19:37:33   Pearson chi2:                     584.
+Date:                Sun, 20 Sep 2020   Deviance:                       632.79
+Time:                        21:57:10   Pearson chi2:                     584.
 No. Iterations:                     5                                         
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -811,7 +835,7 @@ Intercept      1.0713      0.044     24.074      0.000       0.984       1.158
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;y ~ 1&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;y ~ 1&quot;&quot;&quot;</span>
 
 <span class="n">response</span><span class="p">,</span> <span class="n">predictors</span> <span class="o">=</span> <span class="n">dmatrices</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">crabs_df</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">)</span>
 <span class="n">fit</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> 
@@ -826,15 +850,15 @@ Intercept      1.0713      0.044     24.074      0.000       0.984       1.158
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
 ==============================================================================
 Dep. Variable:                      y   No. Observations:                  173
 Model:                            GLM   Df Residuals:                      172
 Model Family:        NegativeBinomial   Df Model:                            0
 Link Function:                    log   Scale:                         0.86643
 Method:                          IRLS   Log-Likelihood:                -444.42
-Date:                Fri, 28 Aug 2020   Deviance:                       224.93
-Time:                        19:37:33   Pearson chi2:                     149.
+Date:                Sun, 20 Sep 2020   Deviance:                       224.93
+Time:                        21:57:11   Pearson chi2:                     149.
 No. Iterations:                     7                                         
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -849,7 +873,7 @@ Overdispersion: 0.8664294490778556
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.discrete.count_model</span> <span class="k">as</span> <span class="nn">cm</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.discrete.count_model</span> <span class="k">as</span> <span class="nn">cm</span>
 <span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;y ~ 1&quot;&quot;&quot;</span>
 
 <span class="n">response</span><span class="p">,</span> <span class="n">predictors</span> <span class="o">=</span> <span class="n">dmatrices</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">crabs_df</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">)</span>
@@ -861,7 +885,7 @@ Overdispersion: 0.8664294490778556
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
          Current function value: 2.205865
          Iterations: 6
          Function evaluations: 8
@@ -871,8 +895,8 @@ Overdispersion: 0.8664294490778556
 Dep. Variable:                       y   No. Observations:                  173
 Model:             ZeroInflatedPoisson   Df Residuals:                      172
 Method:                            MLE   Df Model:                            0
-Date:                 Fri, 28 Aug 2020   Pseudo R-squ.:               2.817e-11
-Time:                         19:37:33   Log-Likelihood:                -381.61
+Date:                 Sun, 20 Sep 2020   Pseudo R-squ.:               2.817e-11
+Time:                         21:57:11   Log-Likelihood:                -381.61
 converged:                        True   LL-Null:                       -381.61
 Covariance Type:             nonrobust   LLR p-value:                       nan
 =================================================================================
@@ -887,7 +911,7 @@ Intercept         1.5038      0.046     32.956      0.000       1.414       1.59
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.discrete.count_model</span> <span class="k">as</span> <span class="nn">cm</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.discrete.count_model</span> <span class="k">as</span> <span class="nn">cm</span>
 <span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;y ~ 1&quot;&quot;&quot;</span>
 
 <span class="n">response</span><span class="p">,</span> <span class="n">predictors</span> <span class="o">=</span> <span class="n">dmatrices</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">crabs_df</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">)</span>
@@ -900,18 +924,20 @@ Intercept         1.5038      0.046     32.956      0.000       1.414       1.59
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
          Current function value: 2.134980
          Iterations: 12
          Function evaluations: 13
          Gradient evaluations: 13
-                     ZeroInflatedNegativeBinomialP Regression Results                    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                     ZeroInflatedNegativeBinomialP Regression Results                    
 =========================================================================================
 Dep. Variable:                                 y   No. Observations:                  173
 Model:             ZeroInflatedNegativeBinomialP   Df Residuals:                      172
 Method:                                      MLE   Df Model:                            0
-Date:                           Fri, 28 Aug 2020   Pseudo R-squ.:               3.957e-11
-Time:                                   19:37:33   Log-Likelihood:                -369.35
+Date:                           Sun, 20 Sep 2020   Pseudo R-squ.:               3.957e-11
+Time:                                   21:57:11   Log-Likelihood:                -369.35
 converged:                                  True   LL-Null:                       -369.35
 Covariance Type:                       nonrobust   LLR p-value:                       nan
 =================================================================================
@@ -927,7 +953,7 @@ alpha             0.2242      0.078      2.864      0.004       0.071       0.37
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;y ~ weight + color&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;y ~ weight + color&quot;&quot;&quot;</span>
 
 <span class="n">response</span><span class="p">,</span> <span class="n">predictors</span> <span class="o">=</span> <span class="n">dmatrices</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">crabs_df</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">)</span>
 
@@ -938,20 +964,20 @@ alpha             0.2242      0.078      2.864      0.004       0.071       0.37
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
          Current function value: 2.115471
          Iterations: 19
          Function evaluations: 22
          Gradient evaluations: 22
 </pre></div>
 </div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>                     ZeroInflatedNegativeBinomialP Regression Results                    
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                     ZeroInflatedNegativeBinomialP Regression Results                    
 =========================================================================================
 Dep. Variable:                                 y   No. Observations:                  173
 Model:             ZeroInflatedNegativeBinomialP   Df Residuals:                      170
 Method:                                      MLE   Df Model:                            2
-Date:                           Fri, 28 Aug 2020   Pseudo R-squ.:                0.009138
-Time:                                   19:37:33   Log-Likelihood:                -365.98
+Date:                           Sun, 20 Sep 2020   Pseudo R-squ.:                0.009138
+Time:                                   21:57:11   Log-Likelihood:                -365.98
 converged:                                  True   LL-Null:                       -369.35
 Covariance Type:                       nonrobust   LLR p-value:                   0.03421
 =================================================================================
@@ -969,7 +995,7 @@ alpha             0.2434      0.092      2.641      0.008       0.063       0.42
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;y ~ weight + color&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">formula</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;y ~ weight + color&quot;&quot;&quot;</span>
 
 <span class="n">response</span><span class="p">,</span> <span class="n">predictors</span> <span class="o">=</span> <span class="n">dmatrices</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span> <span class="n">crabs_df</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">)</span>
 
@@ -981,15 +1007,15 @@ alpha             0.2434      0.092      2.641      0.008       0.063       0.42
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
 ==============================================================================
 Dep. Variable:                      y   No. Observations:                  173
 Model:                            GLM   Df Residuals:                      170
 Model Family:        NegativeBinomial   Df Model:                            2
 Link Function:                    log   Scale:                         0.95361
 Method:                          IRLS   Log-Likelihood:                -391.41
-Date:                Fri, 28 Aug 2020   Deviance:                       201.33
-Time:                        19:37:33   Pearson chi2:                     162.
+Date:                Sun, 20 Sep 2020   Deviance:                       201.33
+Time:                        21:57:11   Pearson chi2:                     162.
 No. Iterations:                    15                                         
 Covariance Type:            nonrobust                                         
 ==============================================================================
