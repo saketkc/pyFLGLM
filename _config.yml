@@ -1,7 +1,22 @@
 # Book settings
-title: Foundations of Linear and Generalized Linear Models with Python
+title: Foundations of Linear and Generalized Linear Models with statsmodels
 author: Saket Choudhary 
+
+execute:
+  execute_notebooks: force
 
 latex:
   latex_documents:
     targetname: book.tex
+
+repository:
+  url: https://github.com/saketkc/pyFLGLM  # Online location of your book
+
+html:
+  use_issues_button: true
+  use_repository_button: true
+  google_analytics_id: G-LGMRV6P6CR
+
+sphinx:
+  extra_extensions:  ['sphinxcontrib.gtagjs'] 
+  config: {"gtagjs_ids": ["G-LGMRV6P6CR"]} 
