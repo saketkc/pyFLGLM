@@ -1,32 +1,60 @@
 
-
 <!DOCTYPE html>
 
 <html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3. Chapter 3 - Normal Linear Models: Statistical Inference &#8212; Foundations of Linear and Generalized Linear Models with Python</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
-    <link href="../_static/css/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-LGMRV6P6CR"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            
+            gtag('config', 'G-LGMRV6P6CR');
+            
+        </script>
+    
+    <title>3. Chapter 3 - Normal Linear Models: Statistical Inference &#8212; Foundations of Linear and Generalized Linear Models with statsmodels</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/spanels-index--0afa1ebdab0bb23b98b56d34c23d9f57.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/spanels-variables--ffc7f74dcb1b9eecba2dbcbc22818714.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -41,8 +69,8 @@
     <link rel="next" title="4. Chapter 4 - Generalized Linear Models: Model Fitting and Inference" href="04_Chapter04.html" />
     <link rel="prev" title="2. Chapter 2 - Linear Models: Least Squares Theory" href="02_Chapter02.html" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="docsearch:language" content="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
 
 
 
@@ -59,18 +87,15 @@
 <a class="navbar-brand text-wrap" href="../index.html">
   
   
-  <h1 class="site-logo" id="site-title">Foundations of Linear and Generalized Linear Models with Python</h1>
+  <h1 class="site-logo" id="site-title">Foundations of Linear and Generalized Linear Models with statsmodels</h1>
   
 </a>
-</div>
-
-<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form>
-
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
+    <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../intro.html">
    Foundations of Linear and Generalized Linear Models with Python
@@ -105,9 +130,7 @@
  </li>
 </ul>
 
-</nav>
-
- <!-- To handle the deprecated key -->
+</nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
   Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
@@ -136,11 +159,11 @@
             <i class="fas fa-arrow-up"></i>
         </button>
         
-        <div class="dropdown-buttons-trigger">
+        
+<div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
 
-    
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
         
@@ -152,14 +175,31 @@
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
-    
 </div>
+
         <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/saketkc/pyFLGLM"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/saketkc/pyFLGLM/issues/new?title=Issue%20on%20page%20%2FChapters/03_Chapter03.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
 
 
         <!-- Full screen (wrap in <a> to have style consistency -->
         <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
                     class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
@@ -169,18 +209,13 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Chapters/03_Chapter03.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/saketkc/pyFLGLM/master?urlpath=tree/Chapters/03_Chapter03.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/Chapters/03_Chapter03.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="../_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
         
         
     </div>
@@ -190,6 +225,7 @@
 
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
+        
         <div class="tocsection onthispage pt-5 pb-3">
             <i class="fas fa-list"></i> Contents
         </div>
@@ -221,6 +257,7 @@
 </ul>
 
         </nav>
+        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -521,8 +558,8 @@
 Dep. Variable:                  price   R-squared:                       0.723
 Model:                            OLS   Adj. R-squared:                  0.717
 Method:                 Least Squares   F-statistic:                     126.3
-Date:                Mon, 22 Jun 2020   Prob (F-statistic):           9.79e-28
-Time:                        23:41:14   Log-Likelihood:                -539.05
+Date:                Tue, 12 Jan 2021   Prob (F-statistic):           9.79e-28
+Time:                        23:01:27   Log-Likelihood:                -539.05
 No. Observations:                 100   AIC:                             1084.
 Df Residuals:                      97   BIC:                             1092.
 Df Model:                           2                                         
@@ -540,7 +577,7 @@ Skew:                           0.370   Prob(JB):                     3.22e-07
 Kurtosis:                       5.574   Cond. No.                     6.32e+03
 ==============================================================================
 
-Warnings:
+Notes:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 [2] The condition number is large, 6.32e+03. This might indicate that there are
 strong multicollinearity or other numerical problems.
@@ -646,7 +683,7 @@ the 95% confidence interval where the population mean will lie. While ‘obs_ci_
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x2b8494d3ac88&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fe63ac0eb50&gt;]
 </pre></div>
 </div>
 <img alt="../_images/03_Chapter03_16_1.png" src="../_images/03_Chapter03_16_1.png" />
@@ -671,8 +708,8 @@ the 95% confidence interval where the population mean will lie. While ‘obs_ci_
 Dep. Variable:                  price   R-squared:                       0.772
 Model:                            OLS   Adj. R-squared:                  0.767
 Method:                 Least Squares   F-statistic:                     162.5
-Date:                Mon, 22 Jun 2020   Prob (F-statistic):           1.52e-31
-Time:                        23:41:15   Log-Likelihood:                -524.21
+Date:                Tue, 12 Jan 2021   Prob (F-statistic):           1.52e-31
+Time:                        23:01:28   Log-Likelihood:                -524.21
 No. Observations:                  99   AIC:                             1054.
 Df Residuals:                      96   BIC:                             1062.
 Df Model:                           2                                         
@@ -690,7 +727,7 @@ Skew:                           0.640   Prob(JB):                       0.0195
 Kurtosis:                       3.520   Cond. No.                     6.42e+03
 ==============================================================================
 
-Warnings:
+Notes:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 [2] The condition number is large, 6.42e+03. This might indicate that there are
 strong multicollinearity or other numerical problems.
@@ -716,8 +753,8 @@ Residual SE: 48.48
 Dep. Variable:                  price   R-squared:                       0.782
 Model:                            OLS   Adj. R-squared:                  0.775
 Method:                 Least Squares   F-statistic:                     113.7
-Date:                Mon, 22 Jun 2020   Prob (F-statistic):           2.52e-31
-Time:                        23:41:16   Log-Likelihood:                -521.95
+Date:                Tue, 12 Jan 2021   Prob (F-statistic):           2.52e-31
+Time:                        23:01:28   Log-Likelihood:                -521.95
 No. Observations:                  99   AIC:                             1052.
 Df Residuals:                      95   BIC:                             1062.
 Df Model:                           3                                         
@@ -736,7 +773,7 @@ Skew:                           0.807   Prob(JB):                     0.000314
 Kurtosis:                       4.144   Cond. No.                     1.76e+04
 ==============================================================================
 
-Warnings:
+Notes:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 [2] The condition number is large, 1.76e+04. This might indicate that there are
 strong multicollinearity or other numerical problems.
@@ -757,7 +794,7 @@ Residual SE: 47.39
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.3939570220583582, 5.006768706208471e-05)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.39395702205835825, 5.006768706208423e-05)
 </pre></div>
 </div>
 </div>
@@ -779,8 +816,8 @@ Residual SE: 47.39
 Dep. Variable:                  price   R-squared:                       0.723
 Model:                            OLS   Adj. R-squared:                  0.717
 Method:                 Least Squares   F-statistic:                     126.3
-Date:                Mon, 22 Jun 2020   Prob (F-statistic):           9.79e-28
-Time:                        23:41:16   Log-Likelihood:                -539.05
+Date:                Tue, 12 Jan 2021   Prob (F-statistic):           9.79e-28
+Time:                        23:01:28   Log-Likelihood:                -539.05
 No. Observations:                 100   AIC:                             1084.
 Df Residuals:                      97   BIC:                             1092.
 Df Model:                           2                                         
@@ -798,7 +835,7 @@ Skew:                           0.370   Prob(JB):                     3.22e-07
 Kurtosis:                       5.574   Cond. No.                     6.32e+03
 ==============================================================================
 
-Warnings:
+Notes:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 [2] The condition number is large, 6.32e+03. This might indicate that there are
 strong multicollinearity or other numerical problems.
@@ -823,8 +860,8 @@ Residual SE: 53.33
 Dep. Variable:                  price   R-squared:                       0.724
 Model:                            OLS   Adj. R-squared:                  0.715
 Method:                 Least Squares   F-statistic:                     83.97
-Date:                Mon, 22 Jun 2020   Prob (F-statistic):           9.68e-27
-Time:                        23:41:16   Log-Likelihood:                -538.78
+Date:                Tue, 12 Jan 2021   Prob (F-statistic):           9.68e-27
+Time:                        23:01:28   Log-Likelihood:                -538.78
 No. Observations:                 100   AIC:                             1086.
 Df Residuals:                      96   BIC:                             1096.
 Df Model:                           3                                         
@@ -843,7 +880,7 @@ Skew:                           0.277   Prob(JB):                     9.41e-10
 Kurtosis:                       6.110   Cond. No.                     8.80e+03
 ==============================================================================
 
-Warnings:
+Notes:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 [2] The condition number is large, 8.8e+03. This might indicate that there are
 strong multicollinearity or other numerical problems.
@@ -866,7 +903,7 @@ Residual SE: 53.19
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.07307200731424236, 0.4699872574144045)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.07307200731424245, 0.4699872574144025)
 </pre></div>
 </div>
 </div>
@@ -952,7 +989,20 @@ Residual SE: 53.19
       </div>
     </div>
 
-    <script src="../_static/js/index.js"></script>
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'G-LGMRV6P6CR', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
     
   </body>
 </html>

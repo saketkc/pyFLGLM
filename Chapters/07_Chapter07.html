@@ -1,32 +1,60 @@
 
-
 <!DOCTYPE html>
 
 <html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>5. Chapter 7 - Models for Count Data &#8212; Foundations of Linear and Generalized Linear Models with Python</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
-    <link href="../_static/css/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-LGMRV6P6CR"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            
+            gtag('config', 'G-LGMRV6P6CR');
+            
+        </script>
+    
+    <title>5. Chapter 7 - Models for Count Data &#8212; Foundations of Linear and Generalized Linear Models with statsmodels</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/spanels-index--0afa1ebdab0bb23b98b56d34c23d9f57.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/spanels-variables--ffc7f74dcb1b9eecba2dbcbc22818714.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -40,8 +68,8 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="4. Chapter 4 - Generalized Linear Models: Model Fitting and Inference" href="04_Chapter04.html" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="docsearch:language" content="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
 
 
 
@@ -58,18 +86,15 @@
 <a class="navbar-brand text-wrap" href="../index.html">
   
   
-  <h1 class="site-logo" id="site-title">Foundations of Linear and Generalized Linear Models with Python</h1>
+  <h1 class="site-logo" id="site-title">Foundations of Linear and Generalized Linear Models with statsmodels</h1>
   
 </a>
-</div>
-
-<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form>
-
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
+    <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../intro.html">
    Foundations of Linear and Generalized Linear Models with Python
@@ -104,9 +129,7 @@
  </li>
 </ul>
 
-</nav>
-
- <!-- To handle the deprecated key -->
+</nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
   Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
@@ -135,11 +158,11 @@
             <i class="fas fa-arrow-up"></i>
         </button>
         
-        <div class="dropdown-buttons-trigger">
+        
+<div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
 
-    
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
         
@@ -151,14 +174,31 @@
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
-    
 </div>
+
         <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/saketkc/pyFLGLM"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/saketkc/pyFLGLM/issues/new?title=Issue%20on%20page%20%2FChapters/07_Chapter07.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
 
 
         <!-- Full screen (wrap in <a> to have style consistency -->
         <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
                     class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
@@ -168,18 +208,13 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Chapters/07_Chapter07.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/saketkc/pyFLGLM/master?urlpath=tree/Chapters/07_Chapter07.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/Chapters/07_Chapter07.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="../_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
         
         
     </div>
@@ -189,6 +224,7 @@
 
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
+        
         <div class="tocsection onthispage pt-5 pb-3">
             <i class="fas fa-list"></i> Contents
         </div>
@@ -202,6 +238,7 @@
 </ul>
 
         </nav>
+        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -220,17 +257,14 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: proplot in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (0.6.4)
-Requirement already satisfied: matplotlib in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from proplot) (3.3.2)
-Requirement already satisfied: certifi&gt;=2020.06.20 in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2020.6.20)
-Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.3 in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2.4.7)
-Requirement already satisfied: pillow&gt;=6.2.0 in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (7.2.0)
-Requirement already satisfied: numpy&gt;=1.15 in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (1.19.2)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (1.2.0)
-Requirement already satisfied: cycler&gt;=0.10 in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (0.10.0)
+Requirement already satisfied: matplotlib in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from proplot) (3.3.3)
 Requirement already satisfied: python-dateutil&gt;=2.1 in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2.8.1)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: six in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from cycler&gt;=0.10-&gt;matplotlib-&gt;proplot) (1.15.0)
+Requirement already satisfied: cycler&gt;=0.10 in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (0.10.0)
+Requirement already satisfied: numpy&gt;=1.15 in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (1.19.5)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (1.3.1)
+Requirement already satisfied: pillow&gt;=6.2.0 in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (8.1.0)
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.3 in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from matplotlib-&gt;proplot) (2.4.7)
+Requirement already satisfied: six in /opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages (from cycler&gt;=0.10-&gt;matplotlib-&gt;proplot) (1.15.0)
 </pre></div>
 </div>
 </div>
@@ -258,12 +292,6 @@ Requirement already satisfied: python-dateutil&gt;=2.1 in /opt/hostedtoolcache/P
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matplotlib is building the font cache; this may take a moment.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/proplot/config.py:1454: ProPlotWarning: Rebuilding font cache.
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Populating the interactive namespace from numpy and matplotlib
 </pre></div>
 </div>
@@ -369,8 +397,8 @@ Model:                            GLM   Df Residuals:                       52
 Model Family:                 Poisson   Df Model:                           10
 Link Function:                    log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -114.87
-Date:                Sun, 20 Sep 2020   Deviance:                       43.923
-Time:                        21:58:17   Pearson chi2:                     43.1
+Date:                Tue, 12 Jan 2021   Deviance:                       43.923
+Time:                        23:01:40   Pearson chi2:                     43.1
 No. Iterations:                     5                                         
 Covariance Type:            nonrobust                                         
 =====================================================================================
@@ -505,8 +533,8 @@ Model:                            GLM   Df Residuals:                        4
 Model Family:                 Poisson   Df Model:                            3
 Link Function:                    log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -667.53
-Date:                Sun, 20 Sep 2020   Deviance:                       1286.0
-Time:                        21:58:17   Pearson chi2:                 1.41e+03
+Date:                Tue, 12 Jan 2021   Deviance:                       1286.0
+Time:                        23:01:41   Pearson chi2:                 1.41e+03
 No. Iterations:                     5                                         
 Covariance Type:            nonrobust                                         
 =================================================================================
@@ -547,8 +575,8 @@ Model:                            GLM   Df Residuals:                        1
 Model Family:                 Poisson   Df Model:                            6
 Link Function:                    log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -24.709
-Date:                Sun, 20 Sep 2020   Deviance:                      0.37399
-Time:                        21:58:17   Pearson chi2:                    0.401
+Date:                Tue, 12 Jan 2021   Deviance:                      0.37399
+Time:                        23:01:41   Pearson chi2:                    0.401
 No. Iterations:                     8                                         
 Covariance Type:            nonrobust                                         
 =================================================================================================================
@@ -562,8 +590,8 @@ C(alc, levels=l)[T.no]:C(cig, levels=l)[T.no]     2.0545      0.174     11.803  
 C(alc, levels=l)[T.no]:C(mar, levels=l)[T.no]     2.9860      0.465      6.426      0.000       2.075       3.897
 C(cig, levels=l)[T.no]:C(mar, levels=l)[T.no]     2.8479      0.164     17.382      0.000       2.527       3.169
 =================================================================================================================
-AIC: 63.41741423176761
-0.40110051665258983
+AIC: 63.4174142317677
+0.4011005166525919
 </pre></div>
 </div>
 </div>
@@ -699,8 +727,8 @@ Model:                            GLM   Df Residuals:                        1
 Model Family:                Binomial   Df Model:                            2
 Link Function:                  logit   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:               -0.86889
-Date:                Sun, 20 Sep 2020   Deviance:                    0.0017527
-Time:                        21:58:18   Pearson chi2:                  0.00204
+Date:                Tue, 12 Jan 2021   Deviance:                    0.0017527
+Time:                        23:01:41   Pearson chi2:                  0.00204
 No. Iterations:                     6                                         
 Covariance Type:            nonrobust                                         
 =================================================================================
@@ -820,8 +848,8 @@ Model:                            GLM   Df Residuals:                      172
 Model Family:                 Poisson   Df Model:                            0
 Link Function:                    log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -494.04
-Date:                Sun, 20 Sep 2020   Deviance:                       632.79
-Time:                        21:58:18   Pearson chi2:                     584.
+Date:                Tue, 12 Jan 2021   Deviance:                       632.79
+Time:                        23:01:42   Pearson chi2:                     584.
 No. Iterations:                     5                                         
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -857,8 +885,8 @@ Model:                            GLM   Df Residuals:                      172
 Model Family:        NegativeBinomial   Df Model:                            0
 Link Function:                    log   Scale:                         0.86643
 Method:                          IRLS   Log-Likelihood:                -444.42
-Date:                Sun, 20 Sep 2020   Deviance:                       224.93
-Time:                        21:58:18   Pearson chi2:                     149.
+Date:                Tue, 12 Jan 2021   Deviance:                       224.93
+Time:                        23:01:42   Pearson chi2:                     149.
 No. Iterations:                     7                                         
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -895,8 +923,8 @@ Overdispersion: 0.8664294490778556
 Dep. Variable:                       y   No. Observations:                  173
 Model:             ZeroInflatedPoisson   Df Residuals:                      172
 Method:                            MLE   Df Model:                            0
-Date:                 Sun, 20 Sep 2020   Pseudo R-squ.:               2.817e-11
-Time:                         21:58:18   Log-Likelihood:                -381.61
+Date:                 Tue, 12 Jan 2021   Pseudo R-squ.:               2.817e-11
+Time:                         23:01:42   Log-Likelihood:                -381.61
 converged:                        True   LL-Null:                       -381.61
 Covariance Type:             nonrobust   LLR p-value:                       nan
 =================================================================================
@@ -929,13 +957,15 @@ Intercept         1.5038      0.046     32.956      0.000       1.414       1.59
          Iterations: 12
          Function evaluations: 13
          Gradient evaluations: 13
-                     ZeroInflatedNegativeBinomialP Regression Results                    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                     ZeroInflatedNegativeBinomialP Regression Results                    
 =========================================================================================
 Dep. Variable:                                 y   No. Observations:                  173
 Model:             ZeroInflatedNegativeBinomialP   Df Residuals:                      172
 Method:                                      MLE   Df Model:                            0
-Date:                           Sun, 20 Sep 2020   Pseudo R-squ.:               3.957e-11
-Time:                                   21:58:18   Log-Likelihood:                -369.35
+Date:                           Tue, 12 Jan 2021   Pseudo R-squ.:               3.957e-11
+Time:                                   23:01:42   Log-Likelihood:                -369.35
 converged:                                  True   LL-Null:                       -369.35
 Covariance Type:                       nonrobust   LLR p-value:                       nan
 =================================================================================
@@ -974,8 +1004,8 @@ alpha             0.2242      0.078      2.864      0.004       0.071       0.37
 Dep. Variable:                                 y   No. Observations:                  173
 Model:             ZeroInflatedNegativeBinomialP   Df Residuals:                      170
 Method:                                      MLE   Df Model:                            2
-Date:                           Sun, 20 Sep 2020   Pseudo R-squ.:                0.009138
-Time:                                   21:58:18   Log-Likelihood:                -365.98
+Date:                           Tue, 12 Jan 2021   Pseudo R-squ.:                0.009138
+Time:                                   23:01:42   Log-Likelihood:                -365.98
 converged:                                  True   LL-Null:                       -369.35
 Covariance Type:                       nonrobust   LLR p-value:                   0.03421
 =================================================================================
@@ -1012,8 +1042,8 @@ Model:                            GLM   Df Residuals:                      170
 Model Family:        NegativeBinomial   Df Model:                            2
 Link Function:                    log   Scale:                         0.95361
 Method:                          IRLS   Log-Likelihood:                -391.41
-Date:                Sun, 20 Sep 2020   Deviance:                       201.33
-Time:                        21:58:18   Pearson chi2:                     162.
+Date:                Tue, 12 Jan 2021   Deviance:                       201.33
+Time:                        23:01:42   Pearson chi2:                     162.
 No. Iterations:                    15                                         
 Covariance Type:            nonrobust                                         
 ==============================================================================
@@ -1077,7 +1107,20 @@ color         -0.1734      0.115     -1.505      0.132      -0.399       0.052
       </div>
     </div>
 
-    <script src="../_static/js/index.js"></script>
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'G-LGMRV6P6CR', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
     
   </body>
 </html>
